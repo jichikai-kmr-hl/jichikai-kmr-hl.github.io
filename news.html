@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="小室ハイランド自治会からの過去のお知らせ一覧（年月別）" />
+  <title>お知らせ一覧 | 小室ハイランド自治会</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="assets/logo.png" width="56" height="56" alt="小室ハイランド自治会" />
+        <span class="brand-text">
+          <span class="brand-title">小室ハイランド自治会</span>
+          <span class="brand-sub">千葉県船橋市小室町</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="メインメニュー">
+        <a href="index.html">トップ</a>
+        <a href="news.html" aria-current="page">お知らせ</a>
+        <a href="newsletters.html">広報紙</a>
+        <a href="rules.html">規約・規程</a>
+        <a href="useful.html">お役立ち情報</a>
+        <a href="index.html#mailing-list">メール配信</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <p class="breadcrumb"><a href="index.html">トップ</a> ／ お知らせ一覧</p>
+    <h1 class="page-title"><span aria-hidden="true">📢</span> 過去のお知らせ</h1>
+
+    <section class="section">
+      <p style="margin-top:0; color: var(--text-muted);">
+        年月ごとに自動でまとめています。更新は <code>data/news.csv</code> を編集し
+        <code>python build_content.py</code> を実行してください。
+      </p>
+
+      <div data-content="archive-news">
+        <p>読み込み中…</p>
+      </div>
+
+      <p class="note">
+        <strong>更新方法：</strong>CSV の詳細は <code>data/README.md</code> を参照。
+      </p>
+    </section>
+
+    <p style="margin-top:1rem">
+      <a class="btn" href="index.html">← トップへ戻る</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-name">小室ハイランド自治会</p>
+      <p>千葉県船橋市小室町</p>
+      <p>© 小室ハイランド自治会</p>
+    </div>
+  </footer>
+  <script src="js/content-data.js"></script>
+  <script src="js/render.js"></script>
+</body>
+</html>

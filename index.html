@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="小室ハイランド自治会の公式広報サイト。お知らせ・広報紙・規約・お役立ち情報をご案内します。" />
+  <title>小室ハイランド自治会 | トップ</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="assets/logo.png" width="56" height="56" alt="小室ハイランド自治会" />
+        <span class="brand-text">
+          <span class="brand-title">小室ハイランド自治会</span>
+          <span class="brand-sub">千葉県船橋市小室町</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="メインメニュー">
+        <a href="index.html" aria-current="page">トップ</a>
+        <a href="news.html">お知らせ</a>
+        <a href="newsletters.html">広報紙</a>
+        <a href="rules.html">規約・規程</a>
+        <a href="useful.html">お役立ち情報</a>
+        <a href="#mailing-list">メール配信</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <figure class="hero-eyecatch">
+        <img
+          src="assets/hero.jpg"
+          width="1280"
+          height="720"
+          alt="緑豊かな公園と池、団地・学校が近い小室ハイランド。散歩や仕事、車の行き来など日常の様子"
+        />
+      </figure>
+      <div class="hero-body">
+        <img class="hero-badge" src="assets/logo.png" width="88" height="88" alt="" />
+        <div class="hero-copy">
+          <h1 id="hero-title">ようこそ、小室ハイランド自治会へ</h1>
+          <p>
+            自治会からのお知らせや広報紙、地域のお役立ち情報を掲載しています。<br />
+            紙の配布に加え、サイトとメールでも情報をお届けします。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. 自治会からのお知らせ（最新最大5件） -->
+    <section class="section" aria-labelledby="news-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="news-heading">
+          <span class="icon" aria-hidden="true">📢</span>
+          自治会からのお知らせ
+        </h2>
+        <a class="more-link" href="news.html">過去のお知らせ一覧 →</a>
+      </div>
+      <ul class="news-list" data-content="top-news">
+        <li><p class="news-summary">読み込み中…</p></li>
+      </ul>
+      <p class="note">
+        <strong>更新方法：</strong><code>data/news.csv</code> を編集し
+        <code>python build_content.py</code> を実行してください（HTMLの編集は不要）。
+        トップには新しい順に最大5件、それ以外は
+        <a href="news.html">過去のお知らせ</a>に年月別表示されます。
+      </p>
+    </section>
+
+    <!-- 2. 広報紙 -->
+    <section class="section" aria-labelledby="newsletter-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="newsletter-heading">
+          <span class="icon green" aria-hidden="true">📰</span>
+          広報紙
+        </h2>
+        <a class="more-link" href="newsletters.html">過去の広報紙アーカイブ →</a>
+      </div>
+      <div class="card-grid" data-content="top-newsletter">
+        <p class="card-desc">読み込み中…</p>
+      </div>
+    </section>
+
+    <!-- 3. 規約・規程 / 4. お役立ち情報（導線） -->
+    <section class="section" aria-labelledby="links-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="links-heading">
+          <span class="icon" aria-hidden="true">🔗</span>
+          各種リンク
+        </h2>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <a class="card-link" href="rules.html">
+            <div class="card-label">規約・規程</div>
+            <h3 class="card-title">自治会規約・各種規程</h3>
+            <p class="card-desc">規約や規程のPDF一覧ページへ移動します。</p>
+          </a>
+        </article>
+        <article class="card">
+          <a class="card-link" href="useful.html">
+            <div class="card-label">お役立ち情報</div>
+            <h3 class="card-title">船橋市のゴミ・申請など</h3>
+            <p class="card-desc">市公式サイトなど、暮らしに役立つリンク集です。</p>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. 広報メーリングリスト QR -->
+    <section class="section" id="mailing-list" aria-labelledby="ml-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="ml-heading">
+          <span class="icon orange" aria-hidden="true">✉️</span>
+          広報メーリングリストへの参加
+        </h2>
+      </div>
+      <div class="ml-box">
+        <div class="qr-frame">
+          <img
+            src="assets/qr-mailinglist.png"
+            width="180"
+            height="180"
+            alt="広報メーリングリスト参加用QRコード"
+          />
+          <p class="qr-caption">スマホで読み取ってください</p>
+        </div>
+        <div class="ml-copy">
+          <h3>メールでお知らせを受け取りませんか？</h3>
+          <p>
+            自治会からのお知らせや広報紙の発行案内を、メールでもお届けします。<br />
+            スマートフォンで左のQRコードを読み取るか、下のボタンからご参加ください。<br />
+            （Googleグループへの参加手続きが必要です。退会もいつでも可能です。）
+          </p>
+          <p class="ml-url">
+            <a href="https://groups.google.com/g/jichikaikmrhlpr" target="_blank" rel="noopener noreferrer">
+              https://groups.google.com/g/jichikaikmrhlpr
+            </a>
+          </p>
+          <p>
+            <a
+              class="btn btn-orange"
+              href="https://groups.google.com/g/jichikaikmrhlpr"
+              target="_blank"
+              rel="noopener noreferrer"
+            >メーリングリストに参加する</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-name">小室ハイランド自治会</p>
+      <p>千葉県船橋市小室町</p>
+      <p>本サイトは自治会員向けの広報用です。個人情報は掲載していません。</p>
+      <p>© 小室ハイランド自治会</p>
+    </div>
+  </footer>
+  <script src="js/content-data.js"></script>
+  <script src="js/render.js"></script>
+</body>
+</html>
