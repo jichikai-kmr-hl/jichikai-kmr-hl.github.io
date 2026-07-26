@@ -305,7 +305,40 @@ window.SITE_CONTENT = {
       "description": ""
     }
   ],
+  "hero": [
+    {
+      "image": "00-current-hero-05tone.jpg",
+      "src": "assets/hero-candidates/00-current-hero-05tone.jpg",
+      "title": "団地と公園の日常",
+      "url": "news.html"
+    },
+    {
+      "image": "01-park-multigen.jpg",
+      "src": "assets/hero-candidates/01-park-multigen.jpg",
+      "title": "公園と多世代のくらし",
+      "url": "newsletters.html"
+    },
+    {
+      "image": "03-school-morning.jpg",
+      "src": "assets/hero-candidates/03-school-morning.jpg",
+      "title": "団地と文教の朝",
+      "url": "rules.html"
+    },
+    {
+      "image": "05-morning-sky.jpg",
+      "src": "assets/hero-candidates/05-morning-sky.jpg",
+      "title": "朝の青空のもとで",
+      "url": "useful.html"
+    },
+    {
+      "image": "06-summer-festival.jpg",
+      "src": "assets/hero-candidates/06-summer-festival.jpg",
+      "title": "団地の夏祭り",
+      "url": ""
+    }
+  ],
   "settings": {
-    "topNewsCount": 5
+    "topNewsCount": 5,
+    "heroIntervalMs": 10000
   }
 };

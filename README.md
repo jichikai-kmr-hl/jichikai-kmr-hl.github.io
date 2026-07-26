@@ -77,8 +77,10 @@ python build_content.py
 | `data/news.csv` | お知らせ（日付・タイトル・本文・リンク） |
 | `data/newsletters.csv` | 広報紙（年月・タイトル・Drive URL・最新フラグ） |
 | `data/handouts.csv` | 各種配布物（年月・タイトル・Drive URL） |
+| `data/hero.csv` | キーイメージ（画像名・タイトル・リンクURL） |
 | `build_content.py` | CSV → `js/content-data.js` を生成 |
 | `js/render.js` | ページへ描画 |
+| `js/hero-carousel.js` | トップのキーイメージ・カルーセル |
 
 ## 反映前に差し替える箇所
 
