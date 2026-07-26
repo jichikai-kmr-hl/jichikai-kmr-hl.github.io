@@ -253,6 +253,92 @@
     el.innerHTML = html;
   }
 
+  function renderTopHandouts(el, handouts) {
+    if (!handouts.length) {
+      el.innerHTML =
+        '<article class="card"><p class="card-desc">各種配布物はまだ登録されていません。</p></article>';
+      return;
+    }
+    var recent = handouts.slice(0, 3);
+    var listHtml = recent
+      .map(function (h) {
+        return (
+          '<li><a href="' +
+          esc(h.url) +
+          '" target="_blank" rel="noopener noreferrer">' +
+          '<span class="link-icon" aria-hidden="true">📄</span><span>' +
+          esc(h.title) +
+          '<span class="link-meta">' +
+          esc(h.year + "年" + h.month + "月 · PDF") +
+          "</span></span></a></li>"
+        );
+      })
+      .join("");
+    el.innerHTML =
+      '<article class="card highlight" style="grid-column:1/-1">' +
+      '<div class="card-label">最近の配布物</div>' +
+      '<ul class="link-list" style="margin-top:0.75rem">' +
+      listHtml +
+      "</ul>" +
+      '<p style="margin-top:1rem;margin-bottom:0">' +
+      '<a class="more-link" href="handouts.html">年月別の一覧を見る →</a></p>' +
+      "</article>";
+  }
+
+  function renderArchiveHandouts(el, handouts) {
+    if (!handouts.length) {
+      el.innerHTML = "<p>各種配布物はまだ登録されていません。</p>";
+      return;
+    }
+    // year → month → items
+    var byYear = {};
+    handouts.forEach(function (h) {
+      if (!byYear[h.year]) byYear[h.year] = {};
+      if (!byYear[h.year][h.month]) byYear[h.year][h.month] = [];
+      byYear[h.year][h.month].push(h);
+    });
+    var years = Object.keys(byYear)
+      .map(Number)
+      .sort(function (a, b) {
+        return b - a;
+      });
+    var html = "";
+    years.forEach(function (y) {
+      html +=
+        '<div class="year-block" id="y' +
+        y +
+        '"><h2 class="year-heading">' +
+        y +
+        "年</h2>";
+      var months = Object.keys(byYear[y])
+        .map(Number)
+        .sort(function (a, b) {
+          return b - a;
+        });
+      months.forEach(function (m) {
+        html +=
+          '<div class="month-group"><h3 class="month-heading">' +
+          monthLabel(m) +
+          '</h3><ul class="link-list">';
+        byYear[y][m].forEach(function (h) {
+          var meta = h.description || "PDF · Google ドライブで開く";
+          html +=
+            '<li><a href="' +
+            esc(h.url) +
+            '" target="_blank" rel="noopener noreferrer">' +
+            '<span class="link-icon" aria-hidden="true">📄</span><span>' +
+            esc(h.title) +
+            '<span class="link-meta">' +
+            esc(meta) +
+            "</span></span></a></li>";
+        });
+        html += "</ul></div>";
+      });
+      html += "</div>";
+    });
+    el.innerHTML = html;
+  }
+
   function showError(msg) {
     var nodes = document.querySelectorAll("[data-content]");
     nodes.forEach(function (el) {
@@ -272,6 +358,7 @@
     var count = (data.settings && data.settings.topNewsCount) || 5;
     var news = data.news || [];
     var newsletters = data.newsletters || [];
+    var handouts = data.handouts || [];
 
     var topNews = document.querySelector('[data-content="top-news"]');
     if (topNews) renderTopNews(topNews, news, count);
@@ -284,6 +371,12 @@
 
     var archiveNl = document.querySelector('[data-content="archive-newsletters"]');
     if (archiveNl) renderArchiveNewsletters(archiveNl, newsletters);
+
+    var topHandouts = document.querySelector('[data-content="top-handouts"]');
+    if (topHandouts) renderTopHandouts(topHandouts, handouts);
+
+    var archiveHandouts = document.querySelector('[data-content="archive-handouts"]');
+    if (archiveHandouts) renderArchiveHandouts(archiveHandouts, handouts);
   }
 
   if (document.readyState === "loading") {

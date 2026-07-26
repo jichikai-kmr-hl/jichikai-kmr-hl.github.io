@@ -282,6 +282,29 @@ window.SITE_CONTENT = {
       "description": ""
     }
   ],
+  "handouts": [
+    {
+      "year": 2026,
+      "month": 7,
+      "title": "サンプル配布物（差し替え用）",
+      "url": "https://drive.google.com/",
+      "description": "Google ドライブの共有リンクに差し替えてください"
+    },
+    {
+      "year": 2026,
+      "month": 4,
+      "title": "総会資料 2026年度",
+      "url": "https://drive.google.com/",
+      "description": "総会で配布した資料のPDF"
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "title": "年末回覧・お知らせ",
+      "url": "https://drive.google.com/",
+      "description": ""
+    }
+  ],
   "settings": {
     "topNewsCount": 5
   }

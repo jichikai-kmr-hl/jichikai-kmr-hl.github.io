@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-data/news.csv と data/newsletters.csv を読み込み、
+data/news.csv・newsletters.csv・handouts.csv を読み込み、
 js/content-data.js を生成します。
 
 使い方:
@@ -110,14 +110,43 @@ def parse_newsletters(rows: list[dict[str, str]]) -> list[dict]:
     return items
 
 
+def parse_handouts(rows: list[dict[str, str]]) -> list[dict]:
+    """各種配布物（年月別 PDF リンク）。"""
+    items = []
+    for r in rows:
+        try:
+            year = int(r.get("year", "0"))
+            month = int(r.get("month", "0"))
+        except ValueError:
+            print(f"警告: 年月が不正: {r} — スキップ")
+            continue
+        if not (1 <= month <= 12) or year < 1900:
+            print(f"警告: 年月の範囲外: year={year} month={month} — スキップ")
+            continue
+        items.append(
+            {
+                "year": year,
+                "month": month,
+                "title": r.get("title", ""),
+                "url": r.get("url", "") or "https://drive.google.com/",
+                "description": r.get("description", ""),
+            }
+        )
+    # 新しい順（同月は CSV の順を維持するため、安定ソート）
+    items.sort(key=lambda x: (x["year"], x["month"]), reverse=True)
+    return items
+
+
 def main() -> None:
     news = parse_news(read_csv(DATA / "news.csv"))
     newsletters = parse_newsletters(read_csv(DATA / "newsletters.csv"))
+    handouts = parse_handouts(read_csv(DATA / "handouts.csv"))
 
     payload = {
         "generated": True,
         "news": news,
         "newsletters": newsletters,
+        "handouts": handouts,
         "settings": {
             "topNewsCount": 5,
         },
@@ -135,11 +164,12 @@ def main() -> None:
     OUT.write_text(body, encoding="utf-8")
 
     print(f"生成完了: {OUT}")
-    print(f"  お知らせ: {len(news)} 件")
-    print(f"  広報紙  : {len(newsletters)} 件")
+    print(f"  お知らせ    : {len(news)} 件")
+    print(f"  広報紙      : {len(newsletters)} 件")
+    print(f"  各種配布物  : {len(handouts)} 件")
     latest = next((n for n in newsletters if n["latest"]), None)
     if latest:
-        print(f"  最新号  : {latest['title']}")
+        print(f"  最新号      : {latest['title']}")
 
 
 if __name__ == "__main__":

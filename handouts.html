@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="小室ハイランド自治会からの過去のお知らせ一覧（年月別）" />
-  <title>お知らせ一覧 | 小室ハイランド自治会</title>
+  <meta name="description" content="小室ハイランド自治会 各種配布物（年月別PDF）" />
+  <title>各種配布物 | 小室ハイランド自治会</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -19,9 +19,9 @@
       </a>
       <nav class="nav" aria-label="メインメニュー">
         <a href="index.html">トップ</a>
-        <a href="news.html" aria-current="page">お知らせ</a>
+        <a href="news.html">お知らせ</a>
         <a href="newsletters.html">広報紙</a>
-        <a href="handouts.html">各種配布物</a>
+        <a href="handouts.html" aria-current="page">各種配布物</a>
         <a href="rules.html">規約・規程</a>
         <a href="useful.html">お役立ち情報</a>
         <a href="index.html#mailing-list">メール配信</a>
@@ -30,17 +30,22 @@
   </header>
 
   <main class="main">
-    <p class="breadcrumb"><a href="index.html">トップ</a> ／ お知らせ一覧</p>
-    <h1 class="page-title"><span aria-hidden="true">📢</span> 過去のお知らせ</h1>
+    <p class="breadcrumb"><a href="index.html">トップ</a> ／ 各種配布物</p>
+    <h1 class="page-title"><span aria-hidden="true">📂</span> 各種配布物</h1>
 
     <section class="section">
+      <p style="margin-bottom:1.25rem;color:var(--text-muted, #5a6570);line-height:1.7">
+        自治会から配布した資料・回覧などのPDFを、年月別に掲載しています。<br />
+        リンク先は Google ドライブ上の共有ファイルです。
+      </p>
 
-      <div data-content="archive-news">
+      <div data-content="archive-handouts">
         <p>読み込み中…</p>
       </div>
 
       <p class="note">
-        <strong>更新方法：</strong>CSV の詳細は <code>data/README.md</code> を参照。
+        <strong>運用メモ：</strong>Google ドライブの共有リンクを CSV の <code>url</code> 列に設定してください。
+        詳細は <code>data/README.md</code> を参照。
       </p>
     </section>
 

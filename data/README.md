@@ -1,4 +1,4 @@
-# お知らせ・広報紙の更新方法（CSV）
+# お知らせ・広報紙・各種配布物の更新方法（CSV）
 
 HTML を編集せず、CSV を直してビルドするだけで更新できます。
 
@@ -8,7 +8,7 @@ HTML を編集せず、CSV を直してビルドするだけで更新できま�
 2. プロジェクト直下で次を実行する
 
 ```powershell
-cd C:\Users\kabuk\Documents\komuro-highland-jichikai-site
+cd C:\Users\kabuk\Documents\work\kmr-hl\pr-homepage
 python build_content.py
 ```
 
@@ -61,6 +61,31 @@ date,title,body,link,badge
 year,month,title,url,latest,description
 2026,6,タウンタウン 2026年6月号,https://drive.google.com/file/d/xxxx/view,1,最新号（PDF）
 2026,5,タウンタウン 2026年5月号,https://drive.google.com/file/d/yyyy/view,0,
+```
+
+---
+
+## handouts.csv（各種配布物）
+
+| 列名 | 必須 | 説明 |
+|------|------|------|
+| `year` | ○ | 配布年（例: `2026`） |
+| `month` | ○ | 配布月 `1`〜`12` |
+| `title` | ○ | 表示名（例: `総会資料 2026年度`） |
+| `url` | ○ | Google ドライブ等の PDF リンク |
+| `description` | | 補足文（一覧のメタ表示など） |
+
+- **年月別に自動グループ化**（年 → 月）
+- 同じ年月に複数件あっても問題ありません
+- トップには新しいものから最大3件を表示
+
+### 例
+
+```csv
+year,month,title,url,description
+2026,7,夏休みの注意喚起チラシ,https://drive.google.com/file/d/xxxx/view,回覧・配布
+2026,4,総会資料 2026年度,https://drive.google.com/file/d/yyyy/view,総会で配布した資料
+2025,12,年末回覧,https://drive.google.com/file/d/zzzz/view,
 ```
 
 ---
