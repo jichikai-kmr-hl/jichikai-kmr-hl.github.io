@@ -1,4 +1,4 @@
-# お知らせ・広報紙 CSV からサイト用データを再生成
+# お知らせ・広報紙・各種配布物 CSV からサイト用データを再生成
 Set-Location $PSScriptRoot
 python build_content.py
 if ($LASTEXITCODE -eq 0) {
