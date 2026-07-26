@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-data/news.csv・newsletters.csv・handouts.csv を読み込み、
+data/news.csv・newsletters.csv・handouts.csv・hero.csv を読み込み、
 js/content-data.js を生成します。
 
 使い方:
@@ -137,18 +137,52 @@ def parse_handouts(rows: list[dict[str, str]]) -> list[dict]:
     return items
 
 
+def parse_hero(rows: list[dict[str, str]]) -> list[dict]:
+    """トップ・キーイメージ（カルーセル）。CSV の並び順を維持。"""
+    items = []
+    hero_dir = ROOT / "assets" / "hero-candidates"
+    for r in rows:
+        image = (r.get("image") or "").strip()
+        title = (r.get("title") or "").strip()
+        url = (r.get("url") or "").strip()
+        if not image:
+            print(f"警告: image が空です: {r} — スキップ")
+            continue
+        # ファイル名のみの場合は hero-candidates 配下とみなす
+        if "/" not in image and "\\" not in image:
+            src = f"assets/hero-candidates/{image}"
+            disk = hero_dir / image
+        else:
+            src = image.replace("\\", "/")
+            disk = ROOT / src
+        if not disk.is_file():
+            print(f"警告: 画像ファイルがありません: {disk} — 登録は続行")
+        items.append(
+            {
+                "image": image,
+                "src": src,
+                "title": title or image,
+                "url": url,
+            }
+        )
+    return items
+
+
 def main() -> None:
     news = parse_news(read_csv(DATA / "news.csv"))
     newsletters = parse_newsletters(read_csv(DATA / "newsletters.csv"))
     handouts = parse_handouts(read_csv(DATA / "handouts.csv"))
+    hero = parse_hero(read_csv(DATA / "hero.csv"))
 
     payload = {
         "generated": True,
         "news": news,
         "newsletters": newsletters,
         "handouts": handouts,
+        "hero": hero,
         "settings": {
             "topNewsCount": 5,
+            "heroIntervalMs": 10000,
         },
     }
 
@@ -167,6 +201,7 @@ def main() -> None:
     print(f"  お知らせ    : {len(news)} 件")
     print(f"  広報紙      : {len(newsletters)} 件")
     print(f"  各種配布物  : {len(handouts)} 件")
+    print(f"  キーイメージ: {len(hero)} 件")
     latest = next((n for n in newsletters if n["latest"]), None)
     if latest:
         print(f"  最新号      : {latest['title']}")

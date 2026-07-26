@@ -1,4 +1,4 @@
-# お知らせ・広報紙・各種配布物の更新方法（CSV）
+# お知らせ・広報紙・各種配布物・キーイメージの更新方法（CSV）
 
 HTML を編集せず、CSV を直してビルドするだけで更新できます。
 
@@ -61,6 +61,30 @@ date,title,body,link,badge
 year,month,title,url,latest,description
 2026,6,タウンタウン 2026年6月号,https://drive.google.com/file/d/xxxx/view,1,最新号（PDF）
 2026,5,タウンタウン 2026年5月号,https://drive.google.com/file/d/yyyy/view,0,
+```
+
+---
+
+## hero.csv（トップ・キーイメージ／カルーセル）
+
+| 列名 | 必須 | 説明 |
+|------|------|------|
+| `image` | ○ | 画像ファイル名（`assets/hero-candidates/` 配下）。例: `01-park-multigen.jpg` |
+| `title` | ○ | 表示タイトル（キャプション・代替テキスト） |
+| `url` | | クリック時のリンク先。空ならリンクなし。外部URL可 |
+
+- 並び順＝カルーセルの表示順
+- 自動再生間隔は `build_content.py` の `settings.heroIntervalMs`（既定 10000ms）
+- 画像はあらかじめ `assets/hero-candidates/` に置いてから CSV に書いてください
+
+### 例
+
+```csv
+image,title,url
+00-current-hero-05tone.jpg,団地と公園の日常,
+01-park-multigen.jpg,公園と多世代のくらし,newsletters.html
+03-school-morning.jpg,団地と文教の朝,https://example.com/
+05-morning-sky.jpg,朝の青空のもとで,handouts.html
 ```
 
 ---
