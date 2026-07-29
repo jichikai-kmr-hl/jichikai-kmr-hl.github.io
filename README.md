@@ -15,15 +15,16 @@
 
 ```
 pr-homepage/
-├── index.html          … トップ（最新お知らせ5件・最新広報紙・各種配布物・ML参加QR）
+├── index.html          … トップ（最新お知らせ・行事予定・最新広報紙・各種配布物・ML参加QR）
 ├── news.html           … 過去のお知らせ（年月別）
-├── newsletters.html    … 広報紙アーカイブ（年別）
+├── events.html         … 年間行事予定（CSV描画）
+├── newsletters.html    … 広報紙アーカイブ（年別・見出し概要）
 ├── handouts.html       … 各種配布物（年月別・CSV描画）
 ├── rules.html          … 規約・規程一覧
 ├── useful.html         … お役立ち情報（船橋市リンク等）
 ├── css/style.css       … 共通デザイン
-├── js/                 … お知らせ・広報紙・各種配布物の描画
-├── data/               … CSV（お知らせ・広報紙・各種配布物）
+├── js/                 … お知らせ・行事・広報紙・各種配布物の描画
+├── data/               … CSV（お知らせ・行事・広報紙・各種配布物）
 ├── assets/
 │   ├── logo.png            … 自治会公式ロゴ（丸・左画像）
 │   ├── logo-full.png       … 同ロゴ（切り出し原寸）
@@ -42,12 +43,13 @@ pr-homepage/
 |------|--------|
 | 1. お知らせ（最新最大5件） | `index.html` |
 | 1. 過去お知らせ（年月別） | `news.html` |
-| 2. 最新広報紙リンク | `index.html` / `newsletters.html` |
-| 2. 過去広報紙（年別） | `newsletters.html` |
+| 2. 最新広報紙リンク・見出し | `index.html` / `newsletters.html` |
+| 2. 過去広報紙（年別・概要） | `newsletters.html` |
 | 3. 各種配布物（年月別 PDF） | `handouts.html`（トップは直近3件） |
 | 4. 規約・規程 | `rules.html`（トップは導線のみ） |
 | 5. お役立ち情報 | `useful.html` |
 | 6. 広報ML参加QR | `index.html` の「メール配信」セクション |
+| 7. 年間行事予定 | `events.html`（トップは直近3ヶ月） |
 
 広報ML URL: https://groups.google.com/g/jichikaikmrhlpr
 
@@ -60,13 +62,13 @@ pr-homepage/
 - アクセント: 緑・オレンジ（ロゴの丘・手の輪郭に合わせる）
 - 大きめの文字・丸いカード・シンプルなナビ（高齢の方向けに見やすく）
 
-## お知らせ・広報紙・各種配布物の更新（HTML 不要）
+## お知らせ・広報紙・各種配布物・行事予定の更新（HTML 不要）
 
 CSV を編集してビルドするだけです。詳細は [`data/README.md`](./data/README.md)。
 
 ```powershell
 # リポジトリのルートで
-# 1. data/news.csv / newsletters.csv / handouts.csv を編集
+# 1. data/news.csv / newsletters.csv / handouts.csv / events.csv などを編集
 # 2. ビルド
 python build_content.py
 # 3. ブラウザ再読み込み（または GitHub Pages へ push）
@@ -75,8 +77,9 @@ python build_content.py
 | ファイル | 用途 |
 |----------|------|
 | `data/news.csv` | お知らせ（日付・タイトル・本文・リンク） |
-| `data/newsletters.csv` | 広報紙（年月・タイトル・Drive URL・最新フラグ） |
+| `data/newsletters.csv` | 広報紙（年月・タイトル・Drive URL・最新フラグ・記事見出し） |
 | `data/handouts.csv` | 各種配布物（年月・タイトル・Drive URL） |
+| `data/events.csv` | 年間行事予定（日時・場所・地図・参考リンク・説明） |
 | `data/hero.csv` | キーイメージ（画像名・タイトル・リンクURL） |
 | `build_content.py` | CSV → `js/content-data.js` を生成 |
 | `js/render.js` | ページへ描画 |
@@ -84,7 +87,7 @@ python build_content.py
 
 ## 反映前に差し替える箇所
 
-1. **お知らせ・広報紙・各種配布物** → 上記 CSV（HTML は触らない）
+1. **お知らせ・広報紙・各種配布物・行事予定** → 上記 CSV（HTML は触らない）
 2. **規約・規程の Drive リンク** → `rules.html` の各 `href`
 3. **お役立ちリンク** → 市サイト改修時は `useful.html` を確認
 4. **ロゴ・アイキャッチ** → `assets/logo.png` / `assets/hero.jpg`
@@ -107,6 +110,7 @@ Google Sites は HTML のそのまま貼り付けに制限があるため、**�
 |------------------|----------|
 | ホーム（トップ） | index.html |
 | お知らせ | news.html |
+| 行事予定 | events.html |
 | 広報紙 | newsletters.html |
 | 各種配布物 | handouts.html |
 | 規約・規程 | rules.html |
@@ -123,15 +127,17 @@ Google Sites は HTML のそのまま貼り付けに制限があるため、**�
 3. **見出し** … お知らせ
 4. **テキスト / リスト** … 最新5件（日付＋タイトル）
 5. **ボタン** … 「過去のお知らせ」→ お知らせページ
-6. **見出し** … 広報紙
-7. **ボタン / リンク** … 最新PDF（Drive）・アーカイブページ
-8. **見出し** … 各種配布物
-9. **リンク** … 直近の配布PDF・年月別一覧ページ
-10. **見出し** … 各種リンク
-11. **ボタン** … 規約・規程 / お役立ち情報
-12. **見出し** … 広報メーリングリスト
-13. **画像** … `assets/qr-mailinglist.png` をアップロード
-14. **ボタン** … Google グループ参加 URL
+6. **見出し** … 行事予定
+7. **リスト** … 今後の行事（詳細は行事予定ページ）
+8. **見出し** … 広報紙
+9. **ボタン / リンク** … 最新PDF（Drive）・アーカイブページ
+10. **見出し** … 各種配布物
+11. **リンク** … 直近の配布PDF・年月別一覧ページ
+12. **見出し** … 各種リンク
+13. **ボタン** … 規約・規程 / お役立ち情報
+14. **見出し** … 広報メーリングリスト
+15. **画像** … `assets/qr-mailinglist.png` をアップロード
+16. **ボタン** … Google グループ参加 URL
 
 ### 4. 色の設定（Sites のテーマ）
 
@@ -164,8 +170,8 @@ Start-Process "C:\Users\kabuk\Documents\komuro-highland-jichikai-site\index.html
 
 ## 運用のポイント
 
-- **トップは最新情報のみ**（お知らせ5件・最新広報紙・各種配布物直近・主要導線・ML）
-- **過去・詳細は別ページ**（お知らせ年月別、広報紙年別、各種配布物年月別、規約一覧）
+- **トップは最新情報のみ**（お知らせ5件・行事直近3ヶ月・最新広報紙・各種配布物直近・主要導線・ML）
+- **過去・詳細は別ページ**（お知らせ年月別、行事予定、広報紙年別、各種配布物年月別、規約一覧）
 - **個人情報は載せない**（行事・市からのお知らせなど公開可能な情報中心）
 - 紙配布との併用期間を想定し、サイトは「見に来る人向け」、メールは「届ける手段」として役割分担
 

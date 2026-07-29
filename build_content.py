@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-data/news.csv・newsletters.csv・handouts.csv・hero.csv を読み込み、
+data/news.csv・newsletters.csv・handouts.csv・hero.csv・events.csv を読み込み、
 js/content-data.js を生成します。
 
 使い方:
@@ -68,6 +68,24 @@ def parse_news(rows: list[dict[str, str]]) -> list[dict]:
     return items
 
 
+def split_multiline(raw: str) -> list[str]:
+    """
+    複数行テキストを分割する（広報紙見出し・行事の説明など）。
+    - セル内改行（Excel の Alt+Enter）
+    - または区切り文字 |（1行で書く場合）
+    """
+    if not raw:
+        return []
+    # リテラル \\n も改行として扱う
+    text = raw.replace("\\n", "\n")
+    parts = re.split(r"[\r\n|]+", text)
+    return [p.strip() for p in parts if p and p.strip()]
+
+
+# 後方互換エイリアス
+split_headlines = split_multiline
+
+
 def parse_newsletters(rows: list[dict[str, str]]) -> list[dict]:
     items = []
     for r in rows:
@@ -82,6 +100,7 @@ def parse_newsletters(rows: list[dict[str, str]]) -> list[dict]:
             continue
         latest_raw = (r.get("latest") or "").lower()
         latest = latest_raw in ("1", "true", "yes", "y", "○", "最新")
+        headlines = split_headlines(r.get("description", ""))
         items.append(
             {
                 "year": year,
@@ -89,7 +108,10 @@ def parse_newsletters(rows: list[dict[str, str]]) -> list[dict]:
                 "title": r.get("title", ""),
                 "url": r.get("url", "") or "https://drive.google.com/",
                 "latest": latest,
-                "description": r.get("description", ""),
+                # 後方互換: 単一文としても使える
+                "description": " / ".join(headlines) if headlines else "",
+                # 記事見出し（複数行）
+                "headlines": headlines,
             }
         )
     # 新しい順
@@ -107,6 +129,60 @@ def parse_newsletters(rows: list[dict[str, str]]) -> list[dict]:
                         first = False
                     else:
                         x["latest"] = False
+    return items
+
+
+def parse_events(rows: list[dict[str, str]]) -> list[dict]:
+    """年間行事予定。年月（日は任意）・時刻・場所・リンク対応。"""
+    items = []
+    for r in rows:
+        try:
+            year = int(r.get("year", "0"))
+            month = int(r.get("month", "0"))
+        except ValueError:
+            print(f"警告: 年月が不正: {r} — スキップ")
+            continue
+        if not (1 <= month <= 12) or year < 1900:
+            print(f"警告: 年月の範囲外: year={year} month={month} — スキップ")
+            continue
+        day_raw = (r.get("day") or "").strip()
+        day: int | None
+        if day_raw == "":
+            day = None
+        else:
+            try:
+                day = int(day_raw)
+            except ValueError:
+                print(f"警告: 日が不正: {day_raw!r} — 日なしとして扱う")
+                day = None
+            if day is not None and not (1 <= day <= 31):
+                print(f"警告: 日の範囲外: day={day} — 日なしとして扱う")
+                day = None
+        desc_lines = split_multiline(r.get("description", ""))
+        link = (r.get("link") or "").strip()
+        link_label = (r.get("link_label") or "").strip()
+        if link and not link_label:
+            link_label = "参考情報"
+        items.append(
+            {
+                "year": year,
+                "month": month,
+                "day": day,
+                "title": r.get("title", ""),
+                "start_time": (r.get("start_time") or "").strip(),
+                "end_time": (r.get("end_time") or "").strip(),
+                "location": (r.get("location") or "").strip(),
+                "map_url": (r.get("map_url") or "").strip(),
+                "link": link,
+                "link_label": link_label,
+                "description": "\n".join(desc_lines),
+                "descriptionLines": desc_lines,
+            }
+        )
+    # 古い順（年間予定は時系列で読みやすい）
+    items.sort(
+        key=lambda x: (x["year"], x["month"], x["day"] if x["day"] is not None else 0)
+    )
     return items
 
 
@@ -173,6 +249,7 @@ def main() -> None:
     newsletters = parse_newsletters(read_csv(DATA / "newsletters.csv"))
     handouts = parse_handouts(read_csv(DATA / "handouts.csv"))
     hero = parse_hero(read_csv(DATA / "hero.csv"))
+    events = parse_events(read_csv(DATA / "events.csv"))
 
     payload = {
         "generated": True,
@@ -180,8 +257,10 @@ def main() -> None:
         "newsletters": newsletters,
         "handouts": handouts,
         "hero": hero,
+        "events": events,
         "settings": {
             "topNewsCount": 5,
+            "topEventsMonths": 3,
             "heroIntervalMs": 10000,
         },
     }
@@ -201,10 +280,12 @@ def main() -> None:
     print(f"  お知らせ    : {len(news)} 件")
     print(f"  広報紙      : {len(newsletters)} 件")
     print(f"  各種配布物  : {len(handouts)} 件")
+    print(f"  行事予定    : {len(events)} 件")
     print(f"  キーイメージ: {len(hero)} 件")
     latest = next((n for n in newsletters if n["latest"]), None)
     if latest:
-        print(f"  最新号      : {latest['title']}")
+        hl = len(latest.get("headlines") or [])
+        print(f"  最新号      : {latest['title']}" + (f"（見出し {hl} 件）" if hl else ""))
 
 
 if __name__ == "__main__":
