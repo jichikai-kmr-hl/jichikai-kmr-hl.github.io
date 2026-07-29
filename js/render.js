@@ -35,6 +35,44 @@
     return window.SITE_CONTENT;
   }
 
+  /** 広報紙の記事見出し一覧（headlines 優先、なければ description を分割） */
+  function newsletterHeadlines(item) {
+    if (item.headlines && item.headlines.length) {
+      return item.headlines;
+    }
+    var d = item.description || "";
+    if (!d) return [];
+    return d
+      .split(/\r?\n|\|/)
+      .map(function (s) {
+        return s.trim();
+      })
+      .filter(Boolean);
+  }
+
+  function renderHeadlinesHtml(headlines, className) {
+    if (!headlines || !headlines.length) return "";
+    var cls = className || "newsletter-headlines";
+    return (
+      '<ul class="' +
+      cls +
+      '">' +
+      headlines
+        .map(function (h) {
+          return "<li>" + esc(h) + "</li>";
+        })
+        .join("") +
+      "</ul>"
+    );
+  }
+
+  function eventDateLabel(item) {
+    if (item.day != null && item.day !== "") {
+      return item.month + "/" + item.day;
+    }
+    return item.month + "月";
+  }
+
   function newsHref(item) {
     if (item.link) return item.link;
     return "news.html#" + item.date;
@@ -160,6 +198,33 @@
     el.innerHTML = html;
   }
 
+  function renderNewsletterListItem(n) {
+    var headlines = newsletterHeadlines(n);
+    var latestBadge = n.latest
+      ? '<span class="badge-latest">最新号</span>'
+      : "";
+    var headlinesHtml = renderHeadlinesHtml(headlines);
+    var metaFallback = headlines.length
+      ? ""
+      : '<span class="link-meta">PDF · Google ドライブで開く</span>';
+    return (
+      '<li class="newsletter-item' +
+      (n.latest ? " is-latest" : "") +
+      '"><a href="' +
+      esc(n.url) +
+      '" target="_blank" rel="noopener noreferrer">' +
+      '<span class="link-icon" aria-hidden="true">📄</span>' +
+      '<span class="newsletter-item-body">' +
+      '<span class="newsletter-item-title">' +
+      esc(n.title) +
+      latestBadge +
+      "</span>" +
+      headlinesHtml +
+      metaFallback +
+      "</span></a></li>"
+    );
+  }
+
   function renderTopNewsletter(el, newsletters) {
     var latest =
       newsletters.find(function (n) {
@@ -170,9 +235,12 @@
         '<article class="card highlight"><p class="card-desc">広報紙はまだ登録されていません。</p></article>';
       return;
     }
-    var desc =
-      latest.description ||
-      "Google ドライブ上の最新号を開きます。";
+    var headlines = newsletterHeadlines(latest);
+    var bodyHtml = headlines.length
+      ? renderHeadlinesHtml(headlines, "newsletter-headlines card-headlines")
+      : '<p class="card-desc">' +
+        esc(latest.description || "Google ドライブ上の最新号を開きます。") +
+        "</p>";
     el.innerHTML =
       '<article class="card highlight">' +
       '<a class="card-link" href="' +
@@ -181,10 +249,9 @@
       '<div class="card-label">最新号</div>' +
       '<h3 class="card-title">' +
       esc(latest.title) +
-      "（PDF）</h3>" +
-      '<p class="card-desc">' +
-      esc(desc) +
-      "</p></a></article>" +
+      '（PDF） <span class="badge-latest">最新号</span></h3>' +
+      bodyHtml +
+      "</a></article>" +
       '<article class="card">' +
       '<a class="card-link" href="newsletters.html">' +
       '<div class="card-label">アーカイブ</div>' +
@@ -198,23 +265,7 @@
       el.innerHTML = "<p>広報紙はまだ登録されていません。</p>";
       return;
     }
-    var latest = newsletters.find(function (n) {
-      return n.latest;
-    });
-    var html = "";
-    if (latest) {
-      html +=
-        '<div class="year-block"><h2 class="year-heading">最新号</h2><ul class="link-list">' +
-        '<li><a href="' +
-        esc(latest.url) +
-        '" target="_blank" rel="noopener noreferrer">' +
-        '<span class="link-icon" aria-hidden="true">📄</span><span>' +
-        esc(latest.title) +
-        '<span class="link-meta">' +
-        esc(latest.description || "Google ドライブで開く") +
-        "</span></span></a></li></ul></div>";
-    }
-
+    // 年別一覧のみ（最新号は各号タイトル横のラベルで示す）
     var byYear = {};
     newsletters.forEach(function (n) {
       if (!byYear[n.year]) byYear[n.year] = [];
@@ -225,30 +276,223 @@
       .sort(function (a, b) {
         return b - a;
       });
+    var html = "";
     years.forEach(function (y) {
       html +=
         '<div class="year-block" id="y' +
         y +
         '"><h2 class="year-heading">' +
         y +
-        "年</h2><ul class=\"link-list\">";
+        '年</h2><ul class="link-list newsletter-list">';
       byYear[y]
         .sort(function (a, b) {
           return b.month - a.month;
         })
         .forEach(function (n) {
-          var meta = n.latest ? "最新号 · PDF" : "PDF";
-          html +=
-            '<li><a href="' +
-            esc(n.url) +
-            '" target="_blank" rel="noopener noreferrer">' +
-            '<span class="link-icon" aria-hidden="true">📄</span><span>' +
-            esc(n.title) +
-            '<span class="link-meta">' +
-            esc(meta) +
-            "</span></span></a></li>";
+          html += renderNewsletterListItem(n);
         });
       html += "</ul></div>";
+    });
+    el.innerHTML = html;
+  }
+
+  function eventDescriptionLines(item) {
+    if (item.descriptionLines && item.descriptionLines.length) {
+      return item.descriptionLines;
+    }
+    var d = item.description || "";
+    if (!d) return [];
+    return d
+      .split(/\r?\n|\|/)
+      .map(function (s) {
+        return s.trim();
+      })
+      .filter(Boolean);
+  }
+
+  function eventTimeLabel(item) {
+    var start = item.start_time || "";
+    var end = item.end_time || "";
+    if (start && end) return start + " – " + end;
+    if (start) return start + " 開始";
+    if (end) return end + " まで";
+    return "";
+  }
+
+  function renderEventMeta(item, detailed) {
+    var parts = [];
+    var time = eventTimeLabel(item);
+    if (time) {
+      parts.push(
+        '<span class="event-meta-item event-time"><span class="event-meta-icon" aria-hidden="true">🕐</span>' +
+          esc(time) +
+          "</span>"
+      );
+    }
+    if (item.location) {
+      var locInner = esc(item.location);
+      if (detailed && item.map_url) {
+        locInner =
+          '<a href="' +
+          esc(item.map_url) +
+          '" target="_blank" rel="noopener noreferrer">' +
+          locInner +
+          "（地図）</a>";
+      }
+      parts.push(
+        '<span class="event-meta-item event-location"><span class="event-meta-icon" aria-hidden="true">📍</span>' +
+          locInner +
+          "</span>"
+      );
+    } else if (detailed && item.map_url) {
+      parts.push(
+        '<span class="event-meta-item event-location"><span class="event-meta-icon" aria-hidden="true">📍</span>' +
+          '<a href="' +
+          esc(item.map_url) +
+          '" target="_blank" rel="noopener noreferrer">地図を開く</a></span>'
+      );
+    }
+    if (detailed && item.link) {
+      parts.push(
+        '<span class="event-meta-item event-ref"><span class="event-meta-icon" aria-hidden="true">🔗</span>' +
+          '<a href="' +
+          esc(item.link) +
+          '" target="_blank" rel="noopener noreferrer">' +
+          esc(item.link_label || "参考情報") +
+          "</a></span>"
+      );
+    }
+    if (!parts.length) return "";
+    return '<div class="event-meta">' + parts.join("") + "</div>";
+  }
+
+  function renderEventItem(item, opts) {
+    opts = opts || {};
+    var detailed = !!opts.detailed;
+    var dateHtml =
+      '<span class="event-date">' + esc(String(eventDateLabel(item))) + "</span>";
+    var lines = eventDescriptionLines(item);
+    var desc = "";
+    if (lines.length) {
+      if (detailed) {
+        desc =
+          '<ul class="event-desc-list">' +
+          lines
+            .map(function (line) {
+              return "<li>" + esc(line) + "</li>";
+            })
+            .join("") +
+          "</ul>";
+      } else {
+        // トップは1行要約
+        desc = '<p class="event-desc">' + esc(lines[0]) + "</p>";
+      }
+    }
+    return (
+      '<li class="event-item' +
+      (detailed ? " event-item-detailed" : "") +
+      '">' +
+      dateHtml +
+      '<div class="event-body">' +
+      '<p class="event-title">' +
+      esc(item.title) +
+      "</p>" +
+      renderEventMeta(item, detailed) +
+      desc +
+      "</div></li>"
+    );
+  }
+
+  /** 当月を含む直近 N ヶ月（過去の日付は除く） */
+  function isInNearMonths(item, now, months) {
+    months = months || 3;
+    var y = now.getFullYear();
+    var m = now.getMonth() + 1;
+    var d = now.getDate();
+    var nowIdx = y * 12 + m;
+    var itemIdx = item.year * 12 + item.month;
+    if (itemIdx < nowIdx || itemIdx >= nowIdx + months) return false;
+    if (itemIdx === nowIdx) {
+      if (item.day != null && item.day !== "") {
+        return Number(item.day) >= d;
+      }
+    }
+    return true;
+  }
+
+  function renderTopEvents(el, events, months) {
+    if (!events.length) {
+      el.innerHTML =
+        '<p class="card-desc">行事予定はまだ登録されていません。</p>';
+      return;
+    }
+    var now = new Date();
+    var list = events.filter(function (e) {
+      return isInNearMonths(e, now, months);
+    });
+    if (!list.length) {
+      el.innerHTML =
+        '<p class="card-desc">直近' +
+        months +
+        "ヶ月の予定はありません。</p>" +
+        '<p style="margin-top:0.75rem;margin-bottom:0">' +
+        '<a class="more-link" href="events.html">年間の行事予定一覧 →</a></p>';
+      return;
+    }
+    // 一覧ページと同じ詳細表示（時刻・場所・地図・参考リンク・複数行説明）
+    var html =
+      '<ul class="event-list">' +
+      list
+        .map(function (item) {
+          return renderEventItem(item, { detailed: true });
+        })
+        .join("") +
+      "</ul>" +
+      '<p style="margin-top:1rem;margin-bottom:0">' +
+      '<a class="more-link" href="events.html">年間の行事予定一覧 →</a></p>';
+    el.innerHTML = html;
+  }
+
+  function renderArchiveEvents(el, events) {
+    if (!events.length) {
+      el.innerHTML = "<p>行事予定はまだ登録されていません。</p>";
+      return;
+    }
+    var byYear = {};
+    events.forEach(function (e) {
+      if (!byYear[e.year]) byYear[e.year] = {};
+      if (!byYear[e.year][e.month]) byYear[e.year][e.month] = [];
+      byYear[e.year][e.month].push(e);
+    });
+    var years = Object.keys(byYear)
+      .map(Number)
+      .sort(function (a, b) {
+        return a - b;
+      });
+    var html = "";
+    years.forEach(function (y) {
+      html +=
+        '<div class="year-block" id="y' +
+        y +
+        '"><h2 class="year-heading">' +
+        y +
+        "年</h2>";
+      var months = Object.keys(byYear[y])
+        .map(Number)
+        .sort(function (a, b) {
+          return a - b;
+        });
+      months.forEach(function (m) {
+        html +=
+          '<div class="month-group"><h3 class="month-heading">' +
+          monthLabel(m) +
+          '</h3><ul class="event-list">';
+        byYear[y][m].forEach(function (item) {
+          html += renderEventItem(item, { detailed: true });
+        });
+        html += "</ul></div>";
+      });
+      html += "</div>";
     });
     el.innerHTML = html;
   }
@@ -356,9 +600,11 @@
       return;
     }
     var count = (data.settings && data.settings.topNewsCount) || 5;
+    var eventsMonths = (data.settings && data.settings.topEventsMonths) || 3;
     var news = data.news || [];
     var newsletters = data.newsletters || [];
     var handouts = data.handouts || [];
+    var events = data.events || [];
 
     var topNews = document.querySelector('[data-content="top-news"]');
     if (topNews) renderTopNews(topNews, news, count);
@@ -377,6 +623,12 @@
 
     var archiveHandouts = document.querySelector('[data-content="archive-handouts"]');
     if (archiveHandouts) renderArchiveHandouts(archiveHandouts, handouts);
+
+    var topEvents = document.querySelector('[data-content="top-events"]');
+    if (topEvents) renderTopEvents(topEvents, events, eventsMonths);
+
+    var archiveEvents = document.querySelector('[data-content="archive-events"]');
+    if (archiveEvents) renderArchiveEvents(archiveEvents, events);
   }
 
   if (document.readyState === "loading") {
