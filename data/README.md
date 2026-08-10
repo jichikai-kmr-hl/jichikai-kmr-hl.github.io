@@ -5,16 +5,33 @@ HTML を編集せず、CSV を直してビルドするだけで更新できま�
 ## 手順
 
 1. このフォルダの CSV を編集する（Excel 可。**UTF-8 CSV** で保存）
-2. プロジェクト直下で次を実行する
+2. 変更を commit / push する
+
+**GitHub Actions** が `python build_content.py` を実行し、`js/content-data.js` を自動更新して push します。  
+ローカルで先に確認したい場合は次を実行してください。
 
 ```powershell
 cd C:\Users\kabuk\Documents\work\kmr-hl\pr-homepage
 python build_content.py
 ```
 
-3. ブラウザでページを再読み込みする
+3. ブラウザでページを再読み込みする（GitHub Pages 反映後）
 
 生成されるファイル: `js/content-data.js`（自動生成・手編集不要）
+
+### Actions の対象
+
+| きっかけ | 内容 |
+|----------|------|
+| `data/**/*.csv` の push | ビルド → 差分があれば PR 経由で `content-data.js` を反映 |
+| `build_content.py` の push | 同上 |
+| 手動実行（workflow_dispatch） | Actions 画面からいつでも実行可 |
+
+生成は `bot/rebuild-content-*` ブランチ → PR → 自動マージで行います  
+（`github-actions[bot]` はブランチ保護のバイパス対象にできないための方式です）。
+
+CSV 以外の変更や bot ブランチの push では再実行されません（無限ループ防止）。
+
 
 ---
 

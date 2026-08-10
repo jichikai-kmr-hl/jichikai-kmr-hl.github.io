@@ -1,0 +1,81 @@
+# data/*.csv や build_content.py が push されたとき、
+# content-data.js を再生成してリポジトリへ反映する。
+#
+# 注意: github-actions[bot] は ruleset の bypass 対象にできないため、
+# 保護対象外の bot/** ブランチへ push → PR 作成 → マージで反映する。
+name: Build content from CSV
+
+on:
+  push:
+    paths:
+      - "data/**/*.csv"
+      - "build_content.py"
+    # bot 自身のコミットで再実行しない
+    branches-ignore:
+      - "bot/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: build-content-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # bot ブランチ上の push では動かさない（ループ防止）
+    if: ${{ !startsWith(github.ref_name, 'bot/') }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate js/content-data.js
+        run: python build_content.py
+
+      - name: Create PR and merge if changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add js/content-data.js
+
+          if git diff --staged --quiet; then
+            echo "content-data.js に変更はありません。"
+            exit 0
+          fi
+
+          TARGET_BRANCH="${GITHUB_REF_NAME}"
+          BOT_BRANCH="bot/rebuild-content-${GITHUB_RUN_ID}"
+
+          git checkout -b "${BOT_BRANCH}"
+          git commit -m "chore: rebuild content-data.js from CSV"
+          git push origin "${BOT_BRANCH}"
+
+          # 保護ルールを満たすため PR 経由で反映し、そのままマージ
+          PR_URL=$(gh pr create \
+            --base "${TARGET_BRANCH}" \
+            --head "${BOT_BRANCH}" \
+            --title "chore: rebuild content-data.js from CSV" \
+            --body "Automated rebuild by [Build content from CSV](https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}).
+
+\`data/*.csv\` の変更を \`js/content-data.js\` に反映します。")
+
+          echo "Created PR: ${PR_URL}"
+
+          gh pr merge --merge --delete-branch "${PR_URL}"
+          echo "Merged into ${TARGET_BRANCH}"
