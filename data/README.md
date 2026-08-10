@@ -23,14 +23,11 @@ python build_content.py
 
 | きっかけ | 内容 |
 |----------|------|
-| `data/**/*.csv` の push | ビルド → 差分があれば PR 経由で `content-data.js` を反映 |
+| `data/**/*.csv` の push | ビルド → 差分があれば `content-data.js` を同じブランチへコミット |
 | `build_content.py` の push | 同上 |
 | 手動実行（workflow_dispatch） | Actions 画面からいつでも実行可 |
 
-生成は `bot/rebuild-content-*` ブランチ → PR → 自動マージで行います  
-（`github-actions[bot]` はブランチ保護のバイパス対象にできないための方式です）。
-
-CSV 以外の変更や bot ブランチの push では再実行されません（無限ループ防止）。
+生成結果（`js/content-data.js`）だけが追加コミットされるため、CSV 以外の変更では再実行されません（無限ループ防止）。
 
 
 ---

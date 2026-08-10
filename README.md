@@ -74,7 +74,7 @@ python build_content.py
 # 3. commit / push → GitHub Actions が content-data.js を自動再生成
 ```
 
-CSV を push すると [Build content from CSV](.github/workflows/build-content.yml) が動き、`js/content-data.js` を bot ブランチ経由の PR で反映します。
+CSV を push すると [Build content from CSV](.github/workflows/build-content.yml) が動き、`js/content-data.js` を同じブランチへ自動コミットします。
 
 | ファイル | 用途 |
 |----------|------|
