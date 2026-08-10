@@ -1,0 +1,50 @@
+# data/*.csv や build_content.py が push されたとき、
+# content-data.js を再生成してリポジトリへ反映する
+name: Build content from CSV
+
+on:
+  push:
+    paths:
+      - "data/**/*.csv"
+      - "build_content.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-content-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # push したブランチ上で生成結果をコミットし直す
+          ref: ${{ github.ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate js/content-data.js
+        run: python build_content.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add js/content-data.js
+
+          if git diff --staged --quiet; then
+            echo "content-data.js に変更はありません。"
+            exit 0
+          fi
+
+          git commit -m "chore: rebuild content-data.js from CSV"
+          git push

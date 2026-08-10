@@ -69,10 +69,12 @@ CSV を編集してビルドするだけです。詳細は [`data/README.md`](./
 ```powershell
 # リポジトリのルートで
 # 1. data/news.csv / newsletters.csv / handouts.csv / events.csv などを編集
-# 2. ビルド
+# 2. ローカル確認（任意）
 python build_content.py
-# 3. ブラウザ再読み込み（または GitHub Pages へ push）
+# 3. commit / push → GitHub Actions が content-data.js を自動再生成
 ```
+
+CSV を push すると [Build content from CSV](.github/workflows/build-content.yml) が動き、`js/content-data.js` を更新してコミットします。
 
 | ファイル | 用途 |
 |----------|------|
