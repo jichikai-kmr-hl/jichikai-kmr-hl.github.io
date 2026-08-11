@@ -1,13 +1,17 @@
 /* ========================================
    小室ハイランド自治会 広報サイト
-   デザイン: ロゴ画像のソフトブルー・グリーン・クリーム基調
+   デザイン: デジタル化説明資料と同系の明快・クリーン基調
+   主色 青 #4A86AD / #6BA3C8 · テキスト #2C3E50 · 白基調
    ======================================== */
 
 :root {
+  /* 説明資料（全体概要.pptx）と揃えたパレット */
+  /* 2枚目以降のスライド背景 */
   --bg: #fbf8f1;
   --bg-card: #ffffff;
   --blue: #6ba3c8;
   --blue-dark: #4a86ad;
+  --blue-deeper: #2f5f7a;
   --blue-soft: #e8f2f8;
   --blue-badge: #7eb3d9;
   --green: #6baf6b;
@@ -16,12 +20,13 @@
   --orange: #d4843c;
   --orange-soft: #fdf0e4;
   --cream: #fff8ee;
-  --text: #2c3a47;
-  --text-muted: #5a6a78;
+  --text: #2c3e50;
+  --text-muted: #5a6a7a;
   --border: #e0d8cc;
-  --shadow: 0 4px 16px rgba(74, 100, 120, 0.1);
-  --radius: 16px;
-  --radius-sm: 10px;
+  --shadow: 0 2px 10px rgba(47, 95, 122, 0.08);
+  --shadow-hover: 0 6px 18px rgba(47, 95, 122, 0.12);
+  --radius: 12px;
+  --radius-sm: 8px;
   --max-width: 960px;
   --font: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP",
     "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
@@ -44,9 +49,6 @@ body {
   line-height: 1.7;
   color: var(--text);
   background: var(--bg);
-  background-image:
-    radial-gradient(ellipse at 10% 0%, rgba(126, 179, 217, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 90% 100%, rgba(139, 195, 74, 0.08) 0%, transparent 45%);
   min-height: 100vh;
 }
 
@@ -61,18 +63,27 @@ a {
 }
 
 a:hover {
-  color: var(--orange);
+  color: var(--blue-deeper);
   text-decoration: underline;
 }
 
-/* ---------- Header ---------- */
+/* ---------- Header（説明資料 表紙上側の青 #4A86AD） ---------- */
 .site-header {
-  background: linear-gradient(180deg, #ffffff 0%, var(--cream) 100%);
-  border-bottom: 3px solid var(--blue);
-  box-shadow: var(--shadow);
+  /* 全体概要.pptx 1枚目：上側背景 #4A86AD（フッター #2F5F7A より明るい） */
+  background: var(--blue-dark);
+  color: #e8f2f8;
+  border-bottom: none;
+  box-shadow: 0 2px 10px rgba(74, 134, 173, 0.28);
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+.site-header::after {
+  content: "";
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue) 0%, var(--blue-badge) 55%, var(--green) 100%);
 }
 
 .header-inner {
@@ -106,8 +117,8 @@ a:hover {
   display: block;
   flex-shrink: 0;
   object-fit: cover;
-  box-shadow: 0 2px 8px rgba(107, 163, 200, 0.3);
-  background: transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  background: #fff;
 }
 
 .brand-text {
@@ -119,42 +130,48 @@ a:hover {
 .brand-title {
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--blue-dark);
+  color: #ffffff;
   letter-spacing: 0.02em;
   line-height: 1.3;
 }
 
 .brand-sub {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: #c5d9e8;
 }
 
 /* ---------- Nav ---------- */
 .nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.3rem;
 }
 
 .nav a {
   display: inline-block;
-  padding: 0.45rem 0.85rem;
-  border-radius: 999px;
-  background: var(--blue-soft);
-  color: var(--blue-dark);
-  font-size: 0.92rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  background: transparent;
+  color: #e8f2f8;
+  font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
   border: 1px solid transparent;
-  transition: background 0.15s, border-color 0.15s;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
-.nav a:hover,
-.nav a[aria-current="page"] {
-  background: var(--blue);
-  color: #fff;
+.nav a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
   text-decoration: none;
-  border-color: var(--blue-dark);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.nav a[aria-current="page"] {
+  background: #ffffff;
+  color: var(--blue-dark);
+  text-decoration: none;
+  border-color: #ffffff;
 }
 
 /* ---------- Main ---------- */
@@ -166,7 +183,7 @@ a:hover {
 
 /* ---------- Hero ---------- */
 .hero {
-  background: linear-gradient(180deg, #fff 0%, var(--cream) 100%);
+  background: #ffffff;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 0;
@@ -236,7 +253,8 @@ a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 45%;
+  /* 画像下部の行事情報テキストが見切れないよう下基準 */
+  object-position: center bottom;
 }
 
 .hero-carousel-empty {
@@ -290,28 +308,36 @@ a:hover {
   right: 0.65rem;
 }
 
+/* 画像内テキストと重ならないよう右上にコンパクト表示 */
 .hero-carousel-caption {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
+  top: 0.65rem;
+  right: 0.65rem;
+  left: auto;
+  bottom: auto;
+  display: inline-flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.35rem 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem 0.65rem;
   margin: 0;
-  padding: 0.55rem 0.85rem;
-  font-size: 0.92rem;
-  line-height: 1.4;
+  max-width: min(52%, 22rem);
+  padding: 0.4rem 0.7rem;
+  font-size: 0.85rem;
+  line-height: 1.35;
   color: #fff;
-  background: linear-gradient(transparent, rgba(44, 58, 71, 0.72));
+  text-align: right;
+  background: rgba(47, 95, 122, 0.82);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(47, 95, 122, 0.25);
   pointer-events: none;
+  z-index: 2;
 }
 
 .hero-carousel-count {
   opacity: 0.9;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .hero-carousel-dots {
@@ -321,7 +347,7 @@ a:hover {
   gap: 0.45rem;
   padding: 0.65rem 0.75rem 0.75rem;
   background: #fff;
-  border-bottom: 3px solid var(--blue);
+  border-bottom: 1px solid var(--border);
 }
 
 .hero-carousel-dot {
@@ -351,7 +377,8 @@ a:hover {
   align-items: center;
   gap: 1.1rem;
   padding: 1.25rem 1.4rem 1.4rem;
-  background: linear-gradient(135deg, var(--blue-soft) 0%, var(--green-soft) 55%, var(--cream) 100%);
+  background: #ffffff;
+  border-top: 1px solid var(--border);
 }
 
 .hero-copy {
@@ -361,7 +388,7 @@ a:hover {
 .hero h1 {
   margin: 0 0 0.45rem;
   font-size: 1.5rem;
-  color: var(--blue-dark);
+  color: var(--blue-deeper);
   line-height: 1.4;
 }
 
@@ -387,8 +414,8 @@ a:hover {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.4rem 1.35rem 1.5rem;
-  margin-bottom: 1.4rem;
+  padding: 1.35rem 1.35rem 1.45rem;
+  margin-bottom: 1.25rem;
   box-shadow: var(--shadow);
 }
 
@@ -400,28 +427,37 @@ a:hover {
   gap: 0.75rem;
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--blue-soft);
+  border-bottom: 2px solid var(--blue-dark);
 }
 
 .section-title {
   margin: 0;
-  font-size: 1.25rem;
-  color: var(--blue-dark);
+  font-size: 1.22rem;
+  color: var(--blue-deeper);
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 .section-title .icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   background: var(--blue-soft);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   flex-shrink: 0;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.section-title .icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .section-title .icon.green {
@@ -430,6 +466,34 @@ a:hover {
 
 .section-title .icon.orange {
   background: var(--orange-soft);
+}
+
+/* カード内のインフォグラフィック */
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: var(--blue-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  margin-bottom: 0.55rem;
+}
+
+.card-icon.green {
+  background: var(--green-soft);
+}
+
+.card-icon.orange {
+  background: var(--orange-soft);
+}
+
+.card-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .more-link {
@@ -445,8 +509,17 @@ a:hover {
   padding: 0;
 }
 
+/* トップのお知らせ一覧：行事予定などと同じ枠 */
+.news-list[data-content="top-news"] {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  box-shadow: var(--shadow);
+}
+
 .news-list li {
-  border-bottom: 1px dashed var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .news-list li:last-child {
@@ -501,7 +574,7 @@ a:hover {
 
 .badge-new {
   display: inline-block;
-  background: var(--orange);
+  background: var(--blue-dark);
   color: #fff;
   font-size: 0.72rem;
   font-weight: 700;
@@ -513,12 +586,12 @@ a:hover {
 
 .badge-latest {
   display: inline-block;
-  background: var(--orange);
+  background: var(--blue-dark);
   color: #fff;
   font-size: 0.72rem;
   font-weight: 700;
   padding: 0.12rem 0.5rem;
-  border-radius: 999px;
+  border-radius: 4px;
   margin-left: 0.45rem;
   vertical-align: middle;
   letter-spacing: 0.02em;
@@ -549,6 +622,8 @@ a:hover {
   padding: 0;
 }
 
+/* link-list 内の入れ子 li にも区切り線が当たらないよう明示 */
+.link-list .newsletter-headlines li,
 .newsletter-headlines li {
   position: relative;
   padding: 0.1rem 0 0.1rem 0.95rem;
@@ -610,12 +685,12 @@ a:hover {
   display: inline-block;
   min-width: 3.5rem;
   text-align: center;
-  background: var(--green-soft);
-  color: var(--green);
+  background: var(--blue-soft);
+  color: var(--blue-deeper);
   font-weight: 700;
   font-size: 0.9rem;
   padding: 0.35rem 0.45rem;
-  border-radius: 8px;
+  border-radius: 6px;
   line-height: 1.3;
 }
 
@@ -694,16 +769,17 @@ a:hover {
 }
 
 .card {
-  background: var(--cream);
+  background: #ffffff;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 1.1rem 1.15rem;
-  transition: box-shadow 0.15s, transform 0.15s;
+  transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s;
 }
 
 .card:hover {
-  box-shadow: var(--shadow);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: #b8cddc;
+  transform: translateY(-1px);
 }
 
 .card a.card-link {
@@ -739,8 +815,10 @@ a:hover {
 }
 
 .card.highlight {
-  background: linear-gradient(160deg, var(--blue-soft), #fff);
-  border-color: var(--blue);
+  /* 各種リンクのカードと同じ枠（区切り線色） */
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 }
 
 /* ---------- Link list ---------- */
@@ -779,8 +857,8 @@ a:hover {
 .link-list .link-icon {
   width: 40px;
   height: 40px;
-  border-radius: 10px;
-  background: var(--green-soft);
+  border-radius: 8px;
+  background: var(--blue-soft);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -807,22 +885,31 @@ a:hover {
 
 .year-heading {
   margin: 0 0 0.75rem;
-  padding: 0.45rem 0.85rem;
-  background: var(--blue);
+  padding: 0.5rem 0.95rem;
+  background: var(--blue-dark);
   color: #fff;
   border-radius: var(--radius-sm);
-  font-size: 1.1rem;
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
+/* 子ページ共通：月ごとの区切り線を常に表示 */
 .month-group {
-  margin-bottom: 1rem;
-  padding-left: 0.25rem;
+  margin: 0 0 0.25rem;
+  padding: 0.35rem 0.25rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.month-group:last-child {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
 }
 
 .month-heading {
   margin: 0 0 0.4rem;
   font-size: 0.95rem;
-  color: var(--green);
+  color: var(--blue-deeper);
   font-weight: 700;
 }
 
@@ -832,10 +919,11 @@ a:hover {
   grid-template-columns: auto 1fr;
   gap: 1.5rem;
   align-items: center;
-  background: linear-gradient(135deg, var(--orange-soft), var(--cream));
-  border: 2px solid #f0c9a0;
+  background: #ffffff;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.4rem;
+  box-shadow: var(--shadow);
 }
 
 .qr-frame {
@@ -863,7 +951,7 @@ a:hover {
 .ml-copy h3 {
   margin: 0 0 0.5rem;
   font-size: 1.2rem;
-  color: var(--orange);
+  color: var(--blue-deeper);
 }
 
 .ml-copy p {
@@ -885,29 +973,267 @@ a:hover {
 .btn {
   display: inline-block;
   padding: 0.7rem 1.35rem;
-  background: var(--blue);
+  /* 説明資料 10枚目「階段委員」カードの背景色 */
+  background: var(--green);
   color: #fff !important;
   font-weight: 700;
   font-size: 1rem;
-  border-radius: 999px;
+  border-radius: 8px;
   text-decoration: none !important;
   border: none;
-  box-shadow: 0 3px 10px rgba(107, 163, 200, 0.4);
-  transition: background 0.15s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(107, 175, 107, 0.32);
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
 }
 
 .btn:hover {
-  background: var(--blue-dark);
+  background: #5a9a5a;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(90, 154, 90, 0.35);
 }
 
 .btn-orange {
   background: var(--orange);
-  box-shadow: 0 3px 10px rgba(212, 132, 60, 0.35);
+  box-shadow: 0 2px 8px rgba(212, 132, 60, 0.28);
 }
 
 .btn-orange:hover {
   background: #b86c2e;
+}
+
+/* ---------- Mailing list registration guide ---------- */
+.guide-intro {
+  background: var(--blue-soft);
+  border: 1px solid #c5d9e8;
+  border-radius: var(--radius);
+  padding: 1.25rem 1.35rem;
+}
+
+.guide-lead {
+  margin: 0 0 1rem;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.guide-checklist {
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem 0.85rem 1.75rem;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  line-height: 1.85;
+}
+
+.guide-note {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.guide-start-box {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--blue-dark);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  box-shadow: var(--shadow);
+}
+
+.guide-start-copy p {
+  margin: 0 0 0.75rem;
+  line-height: 1.75;
+}
+
+.guide-plain-list {
+  margin: 0 0 1rem;
+  padding-left: 1.4rem;
+  line-height: 1.85;
+}
+
+.guide-plain-list li {
+  margin-bottom: 0.45rem;
+}
+
+.guide-plain-bullets {
+  margin: 0.75rem 0 0;
+  padding-left: 1.35rem;
+  line-height: 1.85;
+}
+
+.guide-plain-bullets li {
+  margin-bottom: 0.4rem;
+}
+
+.guide-small {
+  font-size: 0.88rem;
+  word-break: break-all;
+  color: var(--text-muted);
+}
+
+.guide-step {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  padding: 1.25rem 1.35rem 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.guide-step-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1.15rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 2px solid var(--blue-dark);
+}
+
+.guide-step-num {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 8px;
+  background: var(--blue-dark);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.guide-step-title {
+  margin: 0.2rem 0 0;
+  font-size: 1.2rem;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+.guide-step-body {
+  display: grid;
+  grid-template-columns: 1fr minmax(200px, 280px);
+  gap: 1.35rem;
+  align-items: start;
+}
+
+.guide-step-text p {
+  margin: 0 0 0.85rem;
+  line-height: 1.8;
+  font-size: 1.02rem;
+}
+
+.guide-highlight {
+  background: var(--blue-soft);
+  border-left: 5px solid var(--blue);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.9rem 1rem;
+  margin: 1rem 0 !important;
+}
+
+.guide-btn-name {
+  display: inline-block;
+  background: #e8f0fe;
+  color: #1967d2;
+  border: 1px solid #aecbfa;
+  border-radius: 6px;
+  padding: 0.15rem 0.55rem;
+  margin: 0.25rem 0;
+  font-size: 1.05rem;
+}
+
+.guide-quote {
+  margin: 0.75rem 0 1rem;
+  padding: 0.9rem 1rem;
+  background: var(--green-soft);
+  border-radius: var(--radius-sm);
+  border: 1px solid #c5e1c5;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--text);
+}
+
+.guide-shot {
+  margin: 0;
+  background: #f3f3f3;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem;
+  text-align: center;
+}
+
+.guide-shot img {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  border: 1px solid #ddd;
+}
+
+.guide-shot figcaption {
+  margin-top: 0.65rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  text-align: left;
+}
+
+.guide-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.guide-faq-item {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 1rem 0.15rem;
+}
+
+.guide-faq-item summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.85rem 0;
+  list-style: none;
+  color: var(--text);
+}
+
+.guide-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.guide-faq-item summary::before {
+  content: "＋ ";
+  color: var(--blue-dark);
+  font-weight: 800;
+}
+
+.guide-faq-item[open] summary::before {
+  content: "− ";
+}
+
+.guide-faq-item p {
+  margin: 0 0 1rem;
+  padding-left: 0.15rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+.ml-guide-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-top: 0.25rem;
 }
 
 /* ---------- Breadcrumb ---------- */
@@ -938,10 +1264,11 @@ a:hover {
 
 /* ---------- Footer ---------- */
 .site-footer {
-  background: var(--blue-dark);
+  background: var(--blue-deeper);
   color: #e8f2f8;
   padding: 1.75rem 1.25rem;
   margin-top: 1rem;
+  border-top: 3px solid var(--blue);
 }
 
 .footer-inner {
@@ -969,10 +1296,40 @@ a:hover {
 .page-title {
   margin: 0 0 1.25rem;
   font-size: 1.55rem;
-  color: var(--blue-dark);
+  color: var(--blue-deeper);
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 3px solid var(--blue-dark);
+}
+
+.page-title .title-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--blue-soft);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 6px;
+  overflow: hidden;
+}
+
+.page-title .title-icon.green {
+  background: var(--green-soft);
+}
+
+.page-title .title-icon.orange {
+  background: var(--orange-soft);
+}
+
+.page-title .title-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 /* ---------- Responsive ---------- */
@@ -996,8 +1353,11 @@ a:hover {
   }
 
   .hero-carousel-caption {
-    font-size: 0.82rem;
-    padding: 0.45rem 0.65rem;
+    top: 0.45rem;
+    right: 0.45rem;
+    max-width: min(70%, 16rem);
+    font-size: 0.78rem;
+    padding: 0.35rem 0.55rem;
   }
 
   .hero-body {
@@ -1033,6 +1393,23 @@ a:hover {
 
   .ml-copy {
     text-align: center;
+  }
+
+  .guide-start-box {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .guide-start-copy {
+    text-align: left;
+  }
+
+  .guide-step-body {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-shot img {
+    max-width: 320px;
   }
 
   .header-inner {
