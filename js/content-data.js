@@ -352,34 +352,34 @@ window.SITE_CONTENT = {
   ],
   "hero": [
     {
-      "image": "00-current-hero-05tone.jpg",
-      "src": "assets/hero-candidates/00-current-hero-05tone.jpg",
-      "title": "団地と公園の日常",
-      "url": "news.html"
+      "image": "event-07-patrol.jpg",
+      "src": "assets/hero-candidates/event-07-patrol.jpg",
+      "title": "夏の防犯パトロール",
+      "url": "events.html"
     },
     {
-      "image": "01-park-multigen.jpg",
-      "src": "assets/hero-candidates/01-park-multigen.jpg",
-      "title": "公園と多世代のくらし",
-      "url": "newsletters.html"
+      "image": "event-08-festival.jpg",
+      "src": "assets/hero-candidates/event-08-festival.jpg",
+      "title": "盆踊り・夏祭り",
+      "url": "events.html"
     },
     {
-      "image": "03-school-morning.jpg",
-      "src": "assets/hero-candidates/03-school-morning.jpg",
-      "title": "団地と文教の朝",
-      "url": "rules.html"
+      "image": "event-09-bosai.jpg",
+      "src": "assets/hero-candidates/event-09-bosai.jpg",
+      "title": "防災訓練",
+      "url": "events.html"
     },
     {
-      "image": "05-morning-sky.jpg",
-      "src": "assets/hero-candidates/05-morning-sky.jpg",
-      "title": "朝の青空のもとで",
-      "url": "useful.html"
+      "image": "event-10-recycle.jpg",
+      "src": "assets/hero-candidates/event-10-recycle.jpg",
+      "title": "秋の資源回収",
+      "url": "events.html"
     },
     {
-      "image": "06-summer-festival.jpg",
-      "src": "assets/hero-candidates/06-summer-festival.jpg",
-      "title": "夏祭り2026",
-      "url": ""
+      "image": "event-12-yearend.jpg",
+      "src": "assets/hero-candidates/event-12-yearend.jpg",
+      "title": "年末回覧・年末警戒",
+      "url": "events.html"
     }
   ],
   "events": [

@@ -242,10 +242,13 @@
         esc(latest.description || "Google ドライブ上の最新号を開きます。") +
         "</p>";
     el.innerHTML =
-      '<article class="card highlight">' +
+      '<article class="card">' +
       '<a class="card-link" href="' +
       esc(latest.url) +
       '" target="_blank" rel="noopener noreferrer">' +
+      '<div class="card-icon" aria-hidden="true">' +
+      '<img src="assets/icons/icon-paper.png" width="48" height="48" alt="" />' +
+      "</div>" +
       '<div class="card-label">最新号</div>' +
       '<h3 class="card-title">' +
       esc(latest.title) +
@@ -254,6 +257,9 @@
       "</a></article>" +
       '<article class="card">' +
       '<a class="card-link" href="newsletters.html">' +
+      '<div class="card-icon" aria-hidden="true">' +
+      '<img src="assets/icons/icon-paper.png" width="48" height="48" alt="" />' +
+      "</div>" +
       '<div class="card-label">アーカイブ</div>' +
       '<h3 class="card-title">過去の広報紙を年別に見る</h3>' +
       '<p class="card-desc">これまでの広報紙を、発行年ごとにまとめて掲載しています。</p>' +
@@ -265,11 +271,12 @@
       el.innerHTML = "<p>広報紙はまだ登録されていません。</p>";
       return;
     }
-    // 年別一覧のみ（最新号は各号タイトル横のラベルで示す）
+    // 年 → 月 でグループ化（他のアーカイブと同じく月の区切り線を表示）
     var byYear = {};
     newsletters.forEach(function (n) {
-      if (!byYear[n.year]) byYear[n.year] = [];
-      byYear[n.year].push(n);
+      if (!byYear[n.year]) byYear[n.year] = {};
+      if (!byYear[n.year][n.month]) byYear[n.year][n.month] = [];
+      byYear[n.year][n.month].push(n);
     });
     var years = Object.keys(byYear)
       .map(Number)
@@ -283,15 +290,23 @@
         y +
         '"><h2 class="year-heading">' +
         y +
-        '年</h2><ul class="link-list newsletter-list">';
-      byYear[y]
+        "年</h2>";
+      var months = Object.keys(byYear[y])
+        .map(Number)
         .sort(function (a, b) {
-          return b.month - a.month;
-        })
-        .forEach(function (n) {
+          return b - a;
+        });
+      months.forEach(function (m) {
+        html +=
+          '<div class="month-group"><h3 class="month-heading">' +
+          monthLabel(m) +
+          '</h3><ul class="link-list newsletter-list">';
+        byYear[y][m].forEach(function (n) {
           html += renderNewsletterListItem(n);
         });
-      html += "</ul></div>";
+        html += "</ul></div>";
+      });
+      html += "</div>";
     });
     el.innerHTML = html;
   }
@@ -434,12 +449,11 @@
       el.innerHTML =
         '<p class="card-desc">直近' +
         months +
-        "ヶ月の予定はありません。</p>" +
-        '<p style="margin-top:0.75rem;margin-bottom:0">' +
-        '<a class="more-link" href="events.html">年間の行事予定一覧 →</a></p>';
+        "ヶ月の予定はありません。</p>";
       return;
     }
     // 一覧ページと同じ詳細表示（時刻・場所・地図・参考リンク・複数行説明）
+    // 一覧への導線はセクション見出しの more-link のみ
     var html =
       '<ul class="event-list">' +
       list
@@ -447,9 +461,7 @@
           return renderEventItem(item, { detailed: true });
         })
         .join("") +
-      "</ul>" +
-      '<p style="margin-top:1rem;margin-bottom:0">' +
-      '<a class="more-link" href="events.html">年間の行事予定一覧 →</a></p>';
+      "</ul>";
     el.innerHTML = html;
   }
 
@@ -519,7 +531,10 @@
       })
       .join("");
     el.innerHTML =
-      '<article class="card highlight" style="grid-column:1/-1">' +
+      '<article class="card" style="grid-column:1/-1">' +
+      '<div class="card-icon" aria-hidden="true">' +
+      '<img src="assets/icons/icon-folder.png" width="48" height="48" alt="" />' +
+      "</div>" +
       '<div class="card-label">最近の配布物</div>' +
       '<ul class="link-list" style="margin-top:0.75rem">' +
       listHtml +
