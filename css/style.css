@@ -1268,31 +1268,31 @@ a:hover {
 
 .key-point {
   text-align: left;
-  margin: 1rem 0;
-  padding: 1rem 1.1rem;
-  background: var(--orange-soft);
-  border: 2px solid var(--orange);
-  border-radius: var(--radius);
+  margin: 0.35rem 0 0.15rem;
+  padding: 0.95rem 1.05rem;
+  background: var(--blue-soft);
+  border: 1px solid #d3e4ef;
+  border-left: 5px solid var(--blue-dark);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
 .key-point-label {
   display: inline-block;
-  margin: 0 0 0.55rem;
-  padding: 0.15rem 0.55rem;
-  background: var(--orange);
-  color: #fff;
-  font-size: 0.85rem;
+  margin: 0 0 0.45rem;
+  padding: 0;
+  background: none;
+  color: var(--blue-deeper);
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  border-radius: 4px;
+  letter-spacing: 0.02em;
 }
 
 .key-point-main {
-  margin: 0 0 0.75rem;
-  font-size: 1.12rem;
+  margin: 0 0 0.7rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .do-dont {
@@ -1303,37 +1303,36 @@ a:hover {
 
 .do-dont li {
   position: relative;
-  margin: 0.4rem 0;
-  padding: 0.45rem 0.7rem 0.45rem 2.3rem;
-  border-radius: 8px;
-  font-weight: 700;
+  margin: 0.35rem 0 0;
+  padding: 0.4rem 0.65rem 0.4rem 2.15rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
   line-height: 1.55;
-}
-
-.do-dont .ng {
   background: #fff;
-  color: var(--red);
-}
-
-.do-dont .ok {
-  background: var(--green-soft);
-  color: #2d6b2d;
+  border: 1px solid var(--border);
+  color: var(--text);
 }
 
 .do-dont .ng::before,
 .do-dont .ok::before {
   position: absolute;
-  left: 0.65rem;
-  top: 0.45rem;
+  left: 0.6rem;
+  top: 0.4rem;
   font-size: 1.05rem;
 }
 
 .do-dont .ng::before {
   content: "×";
+  color: var(--red);
 }
 
 .do-dont .ok::before {
   content: "○";
+  color: var(--green);
+}
+
+.step-list .key-point {
+  margin-top: 0.45rem;
 }
 
 .subscribe-lead {
