@@ -352,189 +352,177 @@ window.SITE_CONTENT = {
   ],
   "hero": [
     {
-      "image": "event-07-patrol.jpg",
-      "src": "assets/hero-candidates/event-07-patrol.jpg",
-      "title": "夏の防犯パトロール",
+      "image": "event-08-natsumatsuri.jpg",
+      "src": "assets/hero-candidates/event-08-natsumatsuri.jpg",
+      "title": "小室夏まつり",
       "url": "events.html"
     },
     {
-      "image": "event-08-festival.jpg",
-      "src": "assets/hero-candidates/event-08-festival.jpg",
-      "title": "盆踊り・夏祭り",
+      "image": "event-10-keiro.jpg",
+      "src": "assets/hero-candidates/event-10-keiro.jpg",
+      "title": "敬老祝賀会",
       "url": "events.html"
     },
     {
-      "image": "event-09-bosai.jpg",
-      "src": "assets/hero-candidates/event-09-bosai.jpg",
-      "title": "防災訓練",
+      "image": "event-10-bunkamatsuri.jpg",
+      "src": "assets/hero-candidates/event-10-bunkamatsuri.jpg",
+      "title": "小室文化まつり",
       "url": "events.html"
     },
     {
-      "image": "event-10-recycle.jpg",
-      "src": "assets/hero-candidates/event-10-recycle.jpg",
-      "title": "秋の資源回収",
+      "image": "event-11-fukushi.jpg",
+      "src": "assets/hero-candidates/event-11-fukushi.jpg",
+      "title": "豊富福祉まつり",
       "url": "events.html"
     },
     {
-      "image": "event-12-yearend.jpg",
-      "src": "assets/hero-candidates/event-12-yearend.jpg",
-      "title": "年末回覧・年末警戒",
+      "image": "event-11-kirei.jpg",
+      "src": "assets/hero-candidates/event-11-kirei.jpg",
+      "title": "船橋をきれいにする日",
+      "url": "events.html"
+    },
+    {
+      "image": "event-11-bosai.jpg",
+      "src": "assets/hero-candidates/event-11-bosai.jpg",
+      "title": "船橋総合防災訓練",
+      "url": "events.html"
+    },
+    {
+      "image": "event-03-komurofes.jpg",
+      "src": "assets/hero-candidates/event-03-komurofes.jpg",
+      "title": "小室フェス",
       "url": "events.html"
     }
   ],
   "events": [
     {
       "year": 2026,
-      "month": 4,
-      "day": 20,
-      "title": "定期総会",
-      "start_time": "10:00",
-      "end_time": "12:00",
-      "location": "小室コミュニティセンター",
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E5%AE%A4%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%83%86%E3%82%A3%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC",
-      "link": "",
-      "link_label": "",
-      "description": "2026年度の活動報告と役員選出\n資料は当日配布します",
-      "descriptionLines": [
-        "2026年度の活動報告と役員選出",
-        "資料は当日配布します"
-      ]
-    },
-    {
-      "year": 2026,
       "month": 5,
-      "day": 11,
-      "title": "春の清掃活動",
-      "start_time": "9:00",
-      "end_time": "11:00",
-      "location": "団地内各所",
+      "day": 31,
+      "title": "(船橋市) クリーン船橋 530の日",
+      "start_time": "",
+      "end_time": "",
+      "location": "船橋市内全域",
       "map_url": "",
       "link": "",
       "link_label": "",
-      "description": "団地内の美化活動\n詳細は回覧でお知らせします",
+      "description": "例年5月の最終日曜日に船橋市内全域で行われる市民一斉の清掃イベントです。",
       "descriptionLines": [
-        "団地内の美化活動",
-        "詳細は回覧でお知らせします"
-      ]
-    },
-    {
-      "year": 2026,
-      "month": 7,
-      "day": null,
-      "title": "夏の防犯パトロール",
-      "start_time": "18:30",
-      "end_time": "20:00",
-      "location": "団地内各所",
-      "map_url": "",
-      "link": "https://www.city.funabashi.lg.jp/",
-      "link_label": "船橋市の防犯情報",
-      "description": "7月より夕方の見回りを実施\n参加希望の方は階段委員まで",
-      "descriptionLines": [
-        "7月より夕方の見回りを実施",
-        "参加希望の方は階段委員まで"
+        "例年5月の最終日曜日に船橋市内全域で行われる市民一斉の清掃イベントです。"
       ]
     },
     {
       "year": 2026,
       "month": 8,
-      "day": 16,
-      "title": "盆踊り・夏祭り",
-      "start_time": "16:00",
-      "end_time": "21:00",
-      "location": "団地内公園（特設会場）",
-      "map_url": "https://www.google.com/maps/search/?api=1&query=%E8%88%B9%E6%A9%8B%E5%B8%82%E5%B0%8F%E5%AE%A4%E7%94%BA+%E5%85%AC%E5%9C%92",
+      "day": 22,
+      "title": "(小室地区連) 小室夏まつり",
+      "start_time": "",
+      "end_time": "",
+      "location": "小室公園（船橋市小室町3313）",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E5%AE%A4%E5%85%AC%E5%9C%92%20%E8%88%B9%E6%A9%8B%E5%B8%82%E5%B0%8F%E5%AE%A4%E7%94%BA3313",
       "link": "",
       "link_label": "",
-      "description": "雨天時は中止または延期\n出店・模擬店あり\n詳細は広報紙・回覧をご確認ください",
+      "description": "8月22日(土)、23日(日)\n小室公園で「小室夏まつり」が開催されます。模擬店や盆踊り、夜空を彩る打ち上げ花火が楽しめる地域の定番イベントです。",
       "descriptionLines": [
-        "雨天時は中止または延期",
-        "出店・模擬店あり",
-        "詳細は広報紙・回覧をご確認ください"
-      ]
-    },
-    {
-      "year": 2026,
-      "month": 9,
-      "day": 14,
-      "title": "防災訓練",
-      "start_time": "9:30",
-      "end_time": "11:30",
-      "location": "集会所・団地内",
-      "map_url": "",
-      "link": "",
-      "link_label": "",
-      "description": "避難経路の確認\n初期消火の実地訓練\n動きやすい服装でご参加ください",
-      "descriptionLines": [
-        "避難経路の確認",
-        "初期消火の実地訓練",
-        "動きやすい服装でご参加ください"
+        "8月22日(土)、23日(日)",
+        "小室公園で「小室夏まつり」が開催されます。模擬店や盆踊り、夜空を彩る打ち上げ花火が楽しめる地域の定番イベントです。"
       ]
     },
     {
       "year": 2026,
       "month": 10,
-      "day": 12,
-      "title": "秋の資源回収",
-      "start_time": "8:00",
-      "end_time": "11:00",
-      "location": "団地指定の回収場所",
-      "map_url": "",
+      "day": 11,
+      "title": "(小室地区連) 敬老祝賀会",
+      "start_time": "",
+      "end_time": "",
+      "location": "小室中学校（船橋市小室町898）",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E5%AE%A4%E4%B8%AD%E5%AD%A6%E6%A0%A1%20%E8%88%B9%E6%A9%8B%E5%B8%82%E5%B0%8F%E5%AE%A4%E7%94%BA898",
       "link": "",
       "link_label": "",
-      "description": "古紙・古着などの回収\n当日朝の指定場所へお持ちください",
+      "description": "例年10月に「小室地区敬老祝賀会」が小室中学校体育館などを会場に開催されています。小室地区連絡協議会および各町会・自治会が主催・企画運営を行っています。",
       "descriptionLines": [
-        "古紙・古着などの回収",
-        "当日朝の指定場所へお持ちください"
+        "例年10月に「小室地区敬老祝賀会」が小室中学校体育館などを会場に開催されています。小室地区連絡協議会および各町会・自治会が主催・企画運営を行っています。"
       ]
     },
     {
       "year": 2026,
-      "month": 12,
-      "day": 20,
-      "title": "年末回覧・年末警戒",
+      "month": 10,
+      "day": 31,
+      "title": "(公民館) 小室文化まつり",
       "start_time": "",
       "end_time": "",
-      "location": "団地内各所",
-      "map_url": "",
+      "location": "小室公民館（船橋市小室町3308）",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E5%AE%A4%E5%85%AC%E6%B0%91%E9%A4%A8%20%E8%88%B9%E6%A9%8B%E5%B8%82%E5%B0%8F%E5%AE%A4%E7%94%BA3308",
       "link": "",
       "link_label": "",
-      "description": "年末年始の注意事項を回覧します\n警戒活動は別途回覧で案内",
+      "description": "10月31日(土)、11月1日(日)\n小室公民館にて、2026年11月に開催予定です。サークル発表会や作品展示、体験コーナー、模擬店などが実施されます。",
       "descriptionLines": [
-        "年末年始の注意事項を回覧します",
-        "警戒活動は別途回覧で案内"
+        "10月31日(土)、11月1日(日)",
+        "小室公民館にて、2026年11月に開催予定です。サークル発表会や作品展示、体験コーナー、模擬店などが実施されます。"
       ]
     },
     {
-      "year": 2027,
-      "month": 1,
-      "day": null,
-      "title": "新年のご挨拶（広報紙）",
+      "year": 2026,
+      "month": 11,
+      "day": 8,
+      "title": "(豊富社協) 豊富福祉まつり",
       "start_time": "",
       "end_time": "",
-      "location": "",
+      "location": "小室小学校（船橋市小室町899）",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E5%AE%A4%E5%B0%8F%E5%AD%A6%E6%A0%A1%20%E8%88%B9%E6%A9%8B%E5%B8%82%E5%B0%8F%E5%AE%A4%E7%94%BA899",
+      "link": "",
+      "link_label": "",
+      "description": "地域住民の交流と福祉への関心を深めるためのイベントです。舞台発表や福祉体験、健康・環境コーナー、模擬店などが催されます。",
+      "descriptionLines": [
+        "地域住民の交流と福祉への関心を深めるためのイベントです。舞台発表や福祉体験、健康・環境コーナー、模擬店などが催されます。"
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 11,
+      "day": 15,
+      "title": "(船橋市) 船橋をきれいにする日",
+      "start_time": "",
+      "end_time": "",
+      "location": "船橋市内全域",
       "map_url": "",
       "link": "",
       "link_label": "",
-      "description": "タウンタウン1月号を発行",
+      "description": "毎年11月の第3日曜日に開催され、市民や町会・自治会が道端のごみを拾い集めて街を美しくする活動を行っています。",
       "descriptionLines": [
-        "タウンタウン1月号を発行"
+        "毎年11月の第3日曜日に開催され、市民や町会・自治会が道端のごみを拾い集めて街を美しくする活動を行っています。"
+      ]
+    },
+    {
+      "year": 2026,
+      "month": 11,
+      "day": 29,
+      "title": "(船橋市) 船橋総合防災訓練",
+      "start_time": "",
+      "end_time": "",
+      "location": "小室小学校（船橋市小室町899）",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E5%AE%A4%E5%B0%8F%E5%AD%A6%E6%A0%A1%20%E8%88%B9%E6%A9%8B%E5%B8%82%E5%B0%8F%E5%AE%A4%E7%94%BA899",
+      "link": "",
+      "link_label": "",
+      "description": "例年11月に、市内全小中学校などの約82会場で全市民を対象とした「総合防災訓練」を実施しています。シェイクアウト訓練（いっせい行動訓練）をはじめ、避難所の開設・運営訓練や初期消火、備蓄品の確認などが行われます。",
+      "descriptionLines": [
+        "例年11月に、市内全小中学校などの約82会場で全市民を対象とした「総合防災訓練」を実施しています。シェイクアウト訓練（いっせい行動訓練）をはじめ、避難所の開設・運営訓練や初期消火、備蓄品の確認などが行われます。"
       ]
     },
     {
       "year": 2027,
       "month": 3,
-      "day": null,
-      "title": "会計監査・総会準備",
+      "day": 28,
+      "title": "(小室有志) 小室フェス",
       "start_time": "",
       "end_time": "",
-      "location": "",
-      "map_url": "",
+      "location": "小室公園（船橋市小室町3313）",
+      "map_url": "https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E5%AE%A4%E5%85%AC%E5%9C%92%20%E8%88%B9%E6%A9%8B%E5%B8%82%E5%B0%8F%E5%AE%A4%E7%94%BA3313",
       "link": "",
       "link_label": "",
-      "description": "次年度総会に向けた準備\n日程は追ってお知らせします",
+      "description": "春の桜の季節に開催されている、地域住民と食を楽しむ交流イベント（食フェス）です。地元飲食店やキッチンカーの出店、ステージパフォーマンスなどが行われます。",
       "descriptionLines": [
-        "次年度総会に向けた準備",
-        "日程は追ってお知らせします"
+        "春の桜の季節に開催されている、地域住民と食を楽しむ交流イベント（食フェス）です。地元飲食店やキッチンカーの出店、ステージパフォーマンスなどが行われます。"
       ]
     }
   ],

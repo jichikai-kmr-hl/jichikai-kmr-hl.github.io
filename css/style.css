@@ -19,6 +19,12 @@
   --green-hill: #8bc34a;
   --orange: #d4843c;
   --orange-soft: #fdf0e4;
+  --red: #c84848;
+  --red-soft: #fbeaea;
+  --pink: #d66e96;
+  --pink-soft: #faeef3;
+  --purple: #7c64b0;
+  --purple-soft: #f0ebf7;
   --cream: #fff8ee;
   --text: #2c3e50;
   --text-muted: #5a6a7a;
@@ -468,6 +474,18 @@ a:hover {
   background: var(--orange-soft);
 }
 
+.section-title .icon.red {
+  background: var(--red-soft);
+}
+
+.section-title .icon.pink {
+  background: var(--pink-soft);
+}
+
+.section-title .icon.purple {
+  background: var(--purple-soft);
+}
+
 /* カード内のインフォグラフィック */
 .card-icon {
   width: 48px;
@@ -487,6 +505,18 @@ a:hover {
 
 .card-icon.orange {
   background: var(--orange-soft);
+}
+
+.card-icon.red {
+  background: var(--red-soft);
+}
+
+.card-icon.pink {
+  background: var(--pink-soft);
+}
+
+.card-icon.purple {
+  background: var(--purple-soft);
 }
 
 .card-icon img {
@@ -1323,6 +1353,18 @@ a:hover {
 
 .page-title .title-icon.orange {
   background: var(--orange-soft);
+}
+
+.page-title .title-icon.red {
+  background: var(--red-soft);
+}
+
+.page-title .title-icon.pink {
+  background: var(--pink-soft);
+}
+
+.page-title .title-icon.purple {
+  background: var(--purple-soft);
 }
 
 .page-title .title-icon img {

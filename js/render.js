@@ -246,8 +246,8 @@
       '<a class="card-link" href="' +
       esc(latest.url) +
       '" target="_blank" rel="noopener noreferrer">' +
-      '<div class="card-icon" aria-hidden="true">' +
-      '<img src="assets/icons/icon-paper.png" width="48" height="48" alt="" />' +
+      '<div class="card-icon pink" aria-hidden="true">' +
+      '<img src="assets/icons/icon-newsletter.png" width="48" height="48" alt="" />' +
       "</div>" +
       '<div class="card-label">最新号</div>' +
       '<h3 class="card-title">' +
@@ -257,8 +257,8 @@
       "</a></article>" +
       '<article class="card">' +
       '<a class="card-link" href="newsletters.html">' +
-      '<div class="card-icon" aria-hidden="true">' +
-      '<img src="assets/icons/icon-paper.png" width="48" height="48" alt="" />' +
+      '<div class="card-icon pink" aria-hidden="true">' +
+      '<img src="assets/icons/icon-newsletter.png" width="48" height="48" alt="" />' +
       "</div>" +
       '<div class="card-label">アーカイブ</div>' +
       '<h3 class="card-title">過去の広報紙を年別に見る</h3>' +
