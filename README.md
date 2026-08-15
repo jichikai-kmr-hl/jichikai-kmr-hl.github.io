@@ -28,6 +28,10 @@ pr-homepage/
 ├── assets/
 │   ├── logo.png            … 自治会公式ロゴ（丸・左画像）
 │   ├── logo-full.png       … 同ロゴ（切り出し原寸）
+│   ├── favicon.ico         … タブ用アイコン（16/32/48）
+│   ├── favicon-32.png      … タブ用PNG
+│   ├── apple-touch-icon.png … ホーム画面用（180×180）
+│   ├── ogp.png             … SNSシェア用（1200×630）
 │   ├── hero.jpg            … トップ用アイキャッチ（16:9）
 │   ├── hero-square.jpg     … アイキャッチ正方形版（任意）
 │   └── qr-mailinglist.png  … 広報ML参加用QR
