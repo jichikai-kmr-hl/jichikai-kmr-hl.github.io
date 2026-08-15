@@ -1495,6 +1495,54 @@ a:hover {
   object-fit: contain;
 }
 
+.save-url-label {
+  display: block;
+  margin: 0.85rem 0 0.35rem;
+  font-weight: 700;
+  color: var(--blue-deeper);
+}
+
+.save-url-row {
+  display: block;
+}
+
+.save-url-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 0.85rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  word-break: break-all;
+}
+
+.save-url-hint {
+  margin: 0.4rem 0 0.85rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.save-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+
+.save-actions .btn {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.save-status {
+  margin: 0 0 1rem;
+  font-weight: 700;
+  color: var(--blue-deeper);
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 640px) {
   body {
