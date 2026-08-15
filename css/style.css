@@ -1521,7 +1521,7 @@ a:hover {
 }
 
 .save-site-summary::after {
-  content: "開く";
+  content: "見る";
   flex-shrink: 0;
   font-size: 0.9rem;
   font-weight: 700;
