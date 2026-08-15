@@ -1266,6 +1266,128 @@ a:hover {
   margin-top: 0.25rem;
 }
 
+.key-point {
+  text-align: left;
+  margin: 1rem 0;
+  padding: 1rem 1.1rem;
+  background: var(--orange-soft);
+  border: 2px solid var(--orange);
+  border-radius: var(--radius);
+}
+
+.key-point-label {
+  display: inline-block;
+  margin: 0 0 0.55rem;
+  padding: 0.15rem 0.55rem;
+  background: var(--orange);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-radius: 4px;
+}
+
+.key-point-main {
+  margin: 0 0 0.75rem;
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.do-dont {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.do-dont li {
+  position: relative;
+  margin: 0.4rem 0;
+  padding: 0.45rem 0.7rem 0.45rem 2.3rem;
+  border-radius: 8px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.do-dont .ng {
+  background: #fff;
+  color: var(--red);
+}
+
+.do-dont .ok {
+  background: var(--green-soft);
+  color: #2d6b2d;
+}
+
+.do-dont .ng::before,
+.do-dont .ok::before {
+  position: absolute;
+  left: 0.65rem;
+  top: 0.45rem;
+  font-size: 1.05rem;
+}
+
+.do-dont .ng::before {
+  content: "×";
+}
+
+.do-dont .ok::before {
+  content: "○";
+}
+
+.subscribe-lead {
+  font-size: 1.05rem;
+  margin: 0 0 1rem;
+}
+
+.subscribe-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.85rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.btn-subscribe {
+  display: block;
+  text-align: center;
+  padding: 1.15rem 1.25rem;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  border-radius: 12px;
+}
+
+.btn-subscribe-secondary {
+  background: var(--blue-dark);
+}
+
+.addr-box {
+  margin: 1rem 0 0;
+  padding: 0.9rem 1rem;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  word-break: break-all;
+}
+
+.addr-box code {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
+}
+
+.step-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.4rem;
+}
+
+.step-list li {
+  margin: 0.45rem 0;
+}
+
 /* ---------- Breadcrumb ---------- */
 .breadcrumb {
   font-size: 0.9rem;
