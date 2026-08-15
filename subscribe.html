@@ -63,6 +63,13 @@
     .step-list li {
       margin: 0.45rem 0;
     }
+    .warn-box {
+      margin: 1rem 0 0;
+      padding: 0.9rem 1rem;
+      background: var(--orange-soft);
+      border: 1px solid var(--orange);
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
@@ -105,12 +112,17 @@
       <h2 class="section-title">送信したあとの手順</h2>
       <ol class="step-list">
         <li>Google Groups から確認メールが届きます。</li>
-        <li>そのメールに<strong>返信</strong>すると登録完了です。</li>
-        <li>確認メールが来ないときは、迷惑メールフォルダを見てください。</li>
+        <li>メール本文の <strong>「このグループに参加」ボタンは押さない</strong>でください。押すと Google へのログインを求められます。</li>
+        <li>その確認メールに<strong>そのまま返信</strong>してください。件名も本文も変えなくて大丈夫です。</li>
+        <li>少し待つと登録完了です。あらためて完了メールが届くことがあります。</li>
       </ol>
+      <p class="warn-box">
+        すでに「このグループに参加」を押してログイン画面になった場合も、同じ確認メールに戻って返信すれば登録できます。
+      </p>
       <p class="guide-note" style="margin-top:1rem;">
         送り元のメールアドレスが、広報の届く宛先になります。<br />
-        キャリアメール（docomo / au / SoftBank）の場合は、<code>googlegroups.com</code> を受信許可に追加してください。
+        キャリアメール（docomo / au / SoftBank）の場合は、<code>googlegroups.com</code> を受信許可に追加してください。<br />
+        確認メールが来ないときは、迷惑メールフォルダを見てください。
       </p>
     </section>
 
