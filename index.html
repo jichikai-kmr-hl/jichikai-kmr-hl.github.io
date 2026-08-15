@@ -9,6 +9,7 @@
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
   <meta name="theme-color" content="#4a86ad" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ja_JP" />
@@ -82,6 +83,63 @@
             紙の配布に加え、サイトとメールでも情報をお届けします。
           </p>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="save-site" aria-labelledby="save-site-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="save-site-heading">
+          <span class="icon" aria-hidden="true">
+            <img src="assets/icons/channel-web.png" width="40" height="40" alt="" />
+          </span>
+          このサイトを次からすぐ開く
+        </h2>
+      </div>
+      <p>
+        ブラウザの種類によって、保存のしかたが違います。<br />
+        いちばん簡単なのは、スマホの<strong>ホーム画面にアイコンを置く</strong>方法です。ブックマークでも構いません。
+      </p>
+      <label class="save-url-label" for="site-url">このサイトのアドレス</label>
+      <div class="save-url-row">
+        <input
+          id="site-url"
+          class="save-url-input"
+          type="text"
+          readonly
+          value="https://jichikai-kmr-hl.github.io/pr-homepage/"
+        />
+      </div>
+      <p class="save-url-hint">長押しすると、コピーできる機種もあります。</p>
+      <div class="save-actions">
+        <button type="button" class="btn btn-orange" data-share-site>家族に送る・共有する</button>
+        <button type="button" class="btn" data-copy-url>アドレスをコピー</button>
+      </div>
+      <p class="save-status" data-save-status hidden></p>
+      <div class="guide-faq">
+        <details class="guide-faq-item">
+          <summary>iPhone の場合</summary>
+          <ol class="step-list">
+            <li>画面下（または上）の<strong>共有ボタン</strong>（□から矢印が出ている印）を押します。</li>
+            <li><strong>ホーム画面に追加</strong>を選びます。</li>
+            <li><strong>追加</strong>を押します。ホーム画面にアイコンができます。</li>
+          </ol>
+        </details>
+        <details class="guide-faq-item">
+          <summary>Android（一般的なスマホ）の場合</summary>
+          <ol class="step-list">
+            <li>画面の右上などの<strong>メニュー</strong>（「⋮」や「＝」）を開きます。</li>
+            <li><strong>ホーム画面に追加</strong>、または<strong>ブックマーク</strong>を選びます。</li>
+            <li>名前はそのままで保存します。</li>
+          </ol>
+        </details>
+        <details class="guide-faq-item">
+          <summary>らくらくホン・らくらくスマホの場合</summary>
+          <ol class="step-list">
+            <li>ブラウザの<strong>メニュー</strong>を開きます。</li>
+            <li><strong>ブックマーク</strong>、または<strong>ホームに追加</strong>を選びます（機種により名前が違います）。</li>
+            <li>見つからないときは、上のアドレスをメモするか、ご家族に「家族に送る・共有する」で送ってもらってください。</li>
+          </ol>
+        </details>
       </div>
     </section>
 
@@ -227,6 +285,7 @@
   </footer>
   <script src="js/content-data.js"></script>
   <script src="js/render.js"></script>
+  <script src="js/save-site.js"></script>
   <script src="js/hero-carousel.js"></script>
 </body>
 </html>
