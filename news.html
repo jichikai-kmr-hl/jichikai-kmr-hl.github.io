@@ -33,16 +33,20 @@
           <span class="brand-sub">千葉県船橋市小室町</span>
         </span>
       </a>
-      <nav class="nav" aria-label="メインメニュー">
-        <a href="index.html">トップ</a>
-        <a href="news.html" aria-current="page">お知らせ</a>
-        <a href="events.html">行事予定</a>
-        <a href="newsletters.html">広報紙</a>
-        <a href="handouts.html">各種配布物</a>
-        <a href="rules.html">規約・規程</a>
-        <a href="useful.html">お役立ち情報</a>
-        <a href="subscribe.html">メール配信</a>
-      </nav>
+      <button type="button" class="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="メニューを開く">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="nav-toggle-label">メニュー</span>
+      </button>
+      <nav id="site-nav" class="nav" aria-label="メインメニュー">
+          <a href="index.html">トップ</a>
+          <a href="news.html" aria-current="page">お知らせ</a>
+          <a href="events.html">行事予定</a>
+          <a href="newsletters.html">広報紙</a>
+          <a href="handouts.html">各種配布物</a>
+          <a href="rules.html">規約・規程</a>
+          <a href="useful.html">お役立ち情報</a>
+          <a href="subscribe.html">メール配信</a>
+        </nav>
     </div>
   </header>
 
@@ -74,6 +78,7 @@
       <p>© 小室ハイランド自治会</p>
     </div>
   </footer>
+  <script src="js/nav.js"></script>
   <script src="js/content-data.js"></script>
   <script src="js/render.js"></script>
 </body>
