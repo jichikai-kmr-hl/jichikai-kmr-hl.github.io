@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="小室ハイランド自治会の広報メール登録。Googleアカウントは不要です。確認メールの「このグループに参加」は押さず、そのまま返信してください。" />
-  <title>広報メールの登録 | 小室ハイランド自治会</title>
+  <meta name="description" content="小室ハイランド自治会の広報メーリングリストへの参加方法。お使いの電子メールアドレスがあれば登録できます。確認メールの「このグループに参加」は押さず、そのまま返信してください。" />
+  <title>広報メーリングリストへの参加方法 | 小室ハイランド自治会</title>
   <link rel="canonical" href="https://jichikai-kmr-hl.github.io/pr-homepage/subscribe.html" />
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
@@ -13,8 +13,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ja_JP" />
   <meta property="og:site_name" content="小室ハイランド自治会" />
-  <meta property="og:title" content="広報メールの登録 | 小室ハイランド自治会" />
-  <meta property="og:description" content="Googleアカウントは不要です。確認メールの「このグループに参加」は押さず、そのまま返信すると登録できます。" />
+  <meta property="og:title" content="広報メーリングリストへの参加方法 | 小室ハイランド自治会" />
+  <meta property="og:description" content="お使いの電子メールアドレスがあれば登録できます。確認メールの「このグループに参加」は押さず、そのまま返信すると登録できます。" />
   <meta property="og:url" content="https://jichikai-kmr-hl.github.io/pr-homepage/subscribe.html" />
   <meta property="og:image" content="https://jichikai-kmr-hl.github.io/pr-homepage/assets/ogp.png" />
   <link rel="stylesheet" href="css/style.css" />
@@ -41,26 +41,26 @@
           <a href="handouts.html">各種配布物</a>
           <a href="rules.html">規約・規程</a>
           <a href="useful.html">お役立ち情報</a>
-          <a href="subscribe.html" aria-current="page">メール配信</a>
+          <a href="subscribe.html" aria-current="page">メール登録</a>
         </nav>
     </div>
   </header>
 
   <main class="main">
-    <p class="breadcrumb"><a href="index.html">トップ</a> ／ 広報メールの登録</p>
+    <p class="breadcrumb"><a href="index.html">トップ</a> ／ 広報メーリングリストへの参加方法</p>
     <h1 class="page-title">
       <span class="title-icon orange" aria-hidden="true">
         <img src="assets/icons/channel-mail.png" width="44" height="44" alt="" />
       </span>
-      広報メールの登録
+      広報メーリングリストへの参加方法
     </h1>
 
     <section class="section">
       <p class="subscribe-lead">
-        <strong>Googleアカウントは不要</strong>です。<br />
-        今お使いのメール（Yahoo、キャリアメール、Outlook など）のままで登録できます。
+        <strong>お使いの電子メールアドレスがあれば登録できます</strong>。<br />
+        Yahooメールや、携帯電話会社から割り当てられたメールアドレス、Outlook など、今お使いのメールのままで大丈夫です。
       </p>
-      <p>下のボタンを押すとメーラーが開きます。件名も本文も空のままで、<strong>送信</strong>を押してください。</p>
+      <p>下のボタンを押すとメールアプリが開きます。件名も本文も空のままで、<strong>送信</strong>を押してください。</p>
 
       <div class="subscribe-actions">
         <a
@@ -70,15 +70,23 @@
       </div>
 
       <div class="addr-box">
-        ボタンでメーラーが開かないときは、このアドレスに空メールを送ってください。
-        <code>jichikaikmrhlpr+subscribe@googlegroups.com</code>
+        <p>
+          ボタンでメールアプリが開かないときは、このアドレスに、件名も本文も空のままメールを送ってください。
+        </p>
+        <p class="save-url-label" id="subscribe-addr-label">登録用のメールアドレス</p>
+        <p class="addr-value" id="subscribe-addr" aria-labelledby="subscribe-addr-label">
+          jichikaikmrhlpr+subscribe@googlegroups.com
+        </p>
+        <p class="save-url-hint">長押しすると、コピーできる機種もあります。</p>
+        <button type="button" class="btn" data-copy-text="jichikaikmrhlpr+subscribe@googlegroups.com">アドレスをコピー</button>
+        <p class="save-status" data-copy-status hidden></p>
       </div>
     </section>
 
     <section class="section">
       <h2 class="section-title">送信したあとの手順</h2>
       <ol class="step-list">
-        <li>Google Groups から確認メールが届きます。</li>
+        <li>メール送信サービス（Google グループというサービスを利用しています）から、確認のメールが届きます。</li>
         <li>
           <div class="key-point">
             <p class="key-point-label">ここが大切です</p>
@@ -87,7 +95,7 @@
               そのメールに、そのまま返信すると登録できます。
             </p>
             <ul class="do-dont">
-              <li class="ng">「このグループに参加」を押す → Googleへのログインが必要になり、登録できません</li>
+              <li class="ng">「このグループに参加」を押す → 別の画面になり、登録できません</li>
               <li class="ok">確認メールにそのまま返信する → 登録できます</li>
             </ul>
           </div>
@@ -98,7 +106,7 @@
       <p class="guide-note" style="margin-top:1rem;">
         登録できていれば、次回の広報メールから届きます。<br />
         送り元のメールアドレスが、広報の届く宛先になります。<br />
-        キャリアメール（docomo / au / SoftBank）の場合は、<code>googlegroups.com</code> を受信許可に追加してください。<br />
+        携帯電話会社から割り当てられたメールアドレス（docomo / au / SoftBank など）の場合は、<code>googlegroups.com</code> からのメールを受け取れるように、受信許可に追加してください。<br />
         確認メールが来ないときは、迷惑メールフォルダを見てください。
       </p>
     </section>
@@ -109,18 +117,30 @@
         過去のお知らせは、<a href="news.html">ホームページのお知らせ</a>でもご覧いただけます。
       </p>
       <p>
-        Googleグループの画面で過去メールを見たい場合は、Googleアカウントを作成し、そのアカウントのメールで登録してください。
+        Google グループの画面で過去のメールを見たい場合は、Gmail のメールアドレスを作り、そのアドレスで登録してください。
       </p>
     </section>
 
     <section class="section">
-      <h2 class="section-title">配信を止めたいとき</h2>
-      <p>下のボタンから空メールを送ると、配信を停止できます。</p>
+      <h2 class="section-title">登録を解除したいとき</h2>
+      <p>広報メールを止めるときは、下のボタンを押してください。件名も本文も空のままで送信すると、登録を解除できます。</p>
       <div class="subscribe-actions">
         <a
           class="btn btn-subscribe btn-subscribe-secondary"
           href="mailto:jichikaikmrhlpr%2Bunsubscribe@googlegroups.com"
-        >配信停止メールを送る</a>
+        >登録解除のメールを送る</a>
+      </div>
+      <div class="addr-box">
+        <p>
+          ボタンでメールアプリが開かないときは、このアドレスに、件名も本文も空のままメールを送ってください。
+        </p>
+        <p class="save-url-label" id="unsubscribe-addr-label">登録解除用のメールアドレス</p>
+        <p class="addr-value" id="unsubscribe-addr" aria-labelledby="unsubscribe-addr-label">
+          jichikaikmrhlpr+unsubscribe@googlegroups.com
+        </p>
+        <p class="save-url-hint">長押しすると、コピーできる機種もあります。</p>
+        <button type="button" class="btn" data-copy-text="jichikaikmrhlpr+unsubscribe@googlegroups.com">アドレスをコピー</button>
+        <p class="save-status" data-copy-status hidden></p>
       </div>
     </section>
   </main>
@@ -133,5 +153,6 @@
     </div>
   </footer>
   <script src="js/nav.js"></script>
+  <script src="js/copy-address.js"></script>
 </body>
 </html>

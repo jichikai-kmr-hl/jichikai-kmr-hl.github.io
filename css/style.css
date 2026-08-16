@@ -1439,19 +1439,45 @@ a:hover {
 
 .addr-box {
   margin: 1rem 0 0;
-  padding: 0.9rem 1rem;
+  padding: 0.9rem 1rem 1.05rem;
   background: var(--cream);
   border: 1px solid var(--border);
   border-radius: 10px;
-  word-break: break-all;
 }
 
-.addr-box code {
-  display: block;
-  margin-top: 0.35rem;
-  font-size: 0.95rem;
+.addr-box p {
+  margin: 0;
+}
+
+.addr-box .save-url-label {
+  margin-top: 0.75rem;
+}
+
+.addr-value {
+  margin: 0.15rem 0 0;
+  padding: 0.75rem 0.85rem;
+  font-size: 1rem;
   font-weight: 700;
+  line-height: 1.5;
+  word-break: break-all;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  user-select: all;
+  -webkit-user-select: all;
+}
+
+.addr-box .save-url-hint {
+  margin-bottom: 0.65rem;
+}
+
+.addr-box .btn {
+  cursor: pointer;
   font-family: inherit;
+}
+
+.addr-box .save-status {
+  margin: 0.55rem 0 0;
 }
 
 .step-list {
@@ -1859,6 +1885,10 @@ a:hover {
 
   .event-date {
     width: fit-content;
+  }
+
+  .link-list .link-icon {
+    display: none;
   }
 
   .ml-box {
