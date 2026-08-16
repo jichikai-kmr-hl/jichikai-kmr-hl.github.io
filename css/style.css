@@ -256,7 +256,6 @@ a:hover {
 }
 
 
-
 /* ---------- Main ---------- */
 .main {
   max-width: var(--max-width);
@@ -1716,18 +1715,32 @@ a:hover {
     left: 0;
     right: 0;
     z-index: 110;
-    padding: 0.5rem 1rem 0.75rem;
+    padding: 0.5rem 1rem calc(0.85rem + env(safe-area-inset-bottom, 0px));
     background: var(--blue-dark);
     box-shadow: 0 10px 22px rgba(47, 95, 122, 0.28);
     border-top: 1px solid rgba(255, 255, 255, 0.16);
+    /* 大きな文字・拡大表示でも末尾まで届くよう、画面内で縦スクロール */
+    max-height: 70vh;
+    max-height: 70dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
   }
 
   .nav.is-open {
     display: flex;
   }
 
+  body.is-nav-open {
+    overflow: hidden;
+  }
+
   .nav a {
     display: block;
+    flex-shrink: 0;
     padding: 0.75rem 0.85rem;
     font-size: 1rem;
     border-radius: 8px;
@@ -1770,18 +1783,52 @@ a:hover {
     height: 220px;
   }
 
+  /*
+   * 画像下部のキャプション帯は焼き込みのため、狭い画面では
+   * 小さく見切れて読めない。帯を隠してイラストだけ見せる。
+   */
+  .hero-carousel-slide img {
+    object-position: center top;
+    height: 140%;
+    max-height: none;
+  }
+
   .hero-carousel-btn {
     width: 2rem;
     height: 2rem;
     font-size: 1.35rem;
   }
 
+  /* タイトルは画像の下に大きく。枚数は日付と紛らわしいので右上へ */
   .hero-carousel-caption {
+    position: static;
+    display: block;
+    max-width: none;
+    margin: 0;
+    padding: 0.7rem 0.9rem 0.6rem;
+    font-size: 1.08rem;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--blue-deeper);
+    text-align: left;
+    background: var(--blue-soft);
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .hero-carousel-count {
+    position: absolute;
     top: 0.45rem;
     right: 0.45rem;
-    max-width: min(70%, 16rem);
-    font-size: 0.78rem;
     padding: 0.35rem 0.55rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #fff;
+    background: rgba(47, 95, 122, 0.82);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(47, 95, 122, 0.25);
+    opacity: 0.9;
   }
 
   .hero-body {
@@ -1806,8 +1853,12 @@ a:hover {
   }
 
   .event-item {
-    grid-template-columns: 3.75rem 1fr;
-    gap: 0.5rem 0.75rem;
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .event-date {
+    width: fit-content;
   }
 
   .ml-box {
