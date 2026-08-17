@@ -1,7 +1,7 @@
 {
   "name": "小室ハイランド自治会",
   "short_name": "小室ハイランド自治会",
-  "description": "小室ハイランド自治会の公式広報サイト",
+  "description": "千葉県船橋市小室町の小室ハイランド自治会公式広報サイト",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

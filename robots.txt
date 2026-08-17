@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jichikai-kmr-hl.github.io/pr-homepage/sitemap.xml
