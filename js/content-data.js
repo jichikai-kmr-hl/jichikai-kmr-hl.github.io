@@ -14,7 +14,7 @@ window.SITE_CONTENT = {
       "date": "2026-08-20",
       "title": "小室夏まつりパンフレットを配布しました",
       "body": "紙での配付は終了。PDFファイルのダウンロードが可能です。",
-      "link": "handouts.html",
+      "link": "https://drive.google.com/open?id=1wXJ_EaBS1rrUfbGt9UBopUjopEVWMuHq&usp=drive_fs",
       "badge": "NEW"
     },
     {
