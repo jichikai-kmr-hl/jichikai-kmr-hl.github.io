@@ -4,11 +4,25 @@ window.SITE_CONTENT = {
   "generated": true,
   "news": [
     {
+      "date": "2026-09-01",
+      "title": "広報紙「タウンタウン」2026年9月号を発行しました",
+      "body": "最新号を紙での配付、及びPDFファイルのダウンロードが可能です。",
+      "link": "newsletters.html",
+      "badge": "NEW"
+    },
+    {
+      "date": "2026-08-20",
+      "title": "小室夏まつりパンフレットを配布しました",
+      "body": "紙での配付は終了。PDFファイルのダウンロードが可能です。",
+      "link": "handouts.html",
+      "badge": "NEW"
+    },
+    {
       "date": "2026-08-01",
       "title": "広報紙「タウンタウン」2026年8月号を発行しました",
       "body": "最新号を紙での配付、及びPDFファイルのダウンロードが可能です。",
       "link": "newsletters.html",
-      "badge": "NEW"
+      "badge": ""
     },
     {
       "date": "2026-07-20",
@@ -35,10 +49,24 @@ window.SITE_CONTENT = {
   "newsletters": [
     {
       "year": 2026,
+      "month": 9,
+      "title": "タウンタウン 2026年9月号",
+      "url": "https://drive.google.com/open?id=1aCJ5308_uBKtUIKM1Vv5mEO-b8tX_wQb&usp=drive_fs",
+      "latest": true,
+      "description": "敬老祝賀会開催のお知らせ / 階段委員の交代について / ベランダ等の蜂の巣にご注意ください / 令和 8 年 8 月千葉豪雨に学ぶ：団地で命を守る「新・防災基準」",
+      "headlines": [
+        "敬老祝賀会開催のお知らせ",
+        "階段委員の交代について",
+        "ベランダ等の蜂の巣にご注意ください",
+        "令和 8 年 8 月千葉豪雨に学ぶ：団地で命を守る「新・防災基準」"
+      ]
+    },
+    {
+      "year": 2026,
       "month": 8,
       "title": "タウンタウン 2026年8月号",
       "url": "https://drive.google.com/open?id=16NHUiV_R4j_EK6gPpZ7UtWmfeRsH9FLi&usp=drive_fs",
-      "latest": true,
+      "latest": false,
       "description": "野生動物（タヌキ）の目撃情報と適切な対応について / 夏場のドア・ベランダ開放による小動物の侵入に注意！ / 日本赤十字社の募金ご報告と感謝 / 身近に迫る「電話de詐欺」！怪しい電話はすぐ切って相談を！ / 室内でも油断禁物！正しい知識で夏の熱中症を防ぎましょう",
       "headlines": [
         "野生動物（タヌキ）の目撃情報と適切な対応について",
@@ -500,24 +528,17 @@ window.SITE_CONTENT = {
   "handouts": [
     {
       "year": 2026,
-      "month": 7,
-      "title": "サンプル配布物（差し替え用）",
-      "url": "https://drive.google.com/",
-      "description": "Google ドライブの共有リンクに差し替えてください"
+      "month": 8,
+      "title": "小室夏まつりパンフレット",
+      "url": "https://drive.google.com/open?id=1wXJ_EaBS1rrUfbGt9UBopUjopEVWMuHq&usp=drive_fs",
+      "description": "令和8年 小室夏まつりのプログラムになります。"
     },
     {
       "year": 2026,
-      "month": 4,
-      "title": "総会資料 2026年度",
-      "url": "https://drive.google.com/",
-      "description": "総会で配布した資料のPDF"
-    },
-    {
-      "year": 2025,
-      "month": 12,
-      "title": "年末回覧・お知らせ",
-      "url": "https://drive.google.com/",
-      "description": ""
+      "month": 8,
+      "title": "小室夏まつりの騒音・花火カスについて",
+      "url": "https://drive.google.com/open?id=1kqn9ozFhpSLBJGaRxp8uTqyR878mL3ro&usp=drive_fs",
+      "description": "小室夏まつりの騒音・花火カスについての告知です。"
     }
   ],
   "hero": [
