@@ -7,7 +7,7 @@ window.SITE_CONTENT = {
       "date": "2026-09-01",
       "title": "広報紙「タウンタウン」2026年9月号を発行しました",
       "body": "最新号を紙での配付、及びPDFファイルのダウンロードが可能です。",
-      "link": "newsletters.html",
+      "link": "https://drive.google.com/open?id=1aCJ5308_uBKtUIKM1Vv5mEO-b8tX_wQb&usp=drive_fs",
       "badge": "NEW"
     },
     {
@@ -21,14 +21,14 @@ window.SITE_CONTENT = {
       "date": "2026-08-01",
       "title": "広報紙「タウンタウン」2026年8月号を発行しました",
       "body": "最新号を紙での配付、及びPDFファイルのダウンロードが可能です。",
-      "link": "newsletters.html",
+      "link": "https://drive.google.com/open?id=16NHUiV_R4j_EK6gPpZ7UtWmfeRsH9FLi&usp=drive_fs",
       "badge": ""
     },
     {
       "date": "2026-07-20",
       "title": "小室ハイランド自治会 広報用サイトのサンプル公開について",
       "body": "",
-      "link": "rules.html",
+      "link": "news.html",
       "badge": ""
     },
     {
