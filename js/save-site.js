@@ -1,5 +1,5 @@
 (function () {
-  var url = "https://jichikai-kmr-hl.github.io/pr-homepage/";
+  var url = "https://jichikai-kmr-hl.github.io/";
   var title = "小室ハイランド自治会";
   var shareBtn = document.querySelector("[data-share-site]");
   var copyBtn = document.querySelector("[data-copy-url]");
