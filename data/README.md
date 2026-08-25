@@ -5,7 +5,7 @@ HTML を編集せず、CSV を直してビルドするだけで更新できま�
 ## 手順
 
 1. このフォルダの CSV を編集する（Excel 可。**UTF-8 CSV** で保存）
-2. 変更を commit / push する
+2. 変更を commit / push する（リモートは `jichikai-kmr-hl/jichikai-kmr-hl.github.io` の `github-pages`）
 
 **GitHub Actions** が `python build_content.py` を実行し、`js/content-data.js` を自動更新して push します。  
 ローカルで先に確認したい場合は次を実行してください。

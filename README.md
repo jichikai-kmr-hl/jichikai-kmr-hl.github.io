@@ -6,11 +6,18 @@
 
 > **作成の経緯・要件・資産の説明:** 詳細は [`作成記録.md`](./作成記録.md) を参照してください。
 
-## 公開 URL
+## 公開場所
 
-- サイト: https://jichikai-kmr-hl.github.io/
-- 旧アドレス `https://jichikai-kmr-hl.github.io/pr-homepage/` はルートへ転送します
-- リポジトリ: https://github.com/jichikai-kmr-hl/jichikai-kmr-hl.github.io
+| 用途 | 場所 |
+|------|------|
+| サイト（正規 URL） | https://jichikai-kmr-hl.github.io/ |
+| サイト本体のリポジトリ | https://github.com/jichikai-kmr-hl/jichikai-kmr-hl.github.io （公開ブランチ `github-pages`） |
+| 旧 URL の転送専用 | https://github.com/jichikai-kmr-hl/pr-homepage |
+| 作業フォルダ | `C:\Users\kabuk\Documents\work\kmr-hl\pr-homepage\` |
+
+旧アドレス `https://jichikai-kmr-hl.github.io/pr-homepage/` は、転送専用リポジトリの GitHub Pages がルートへ飛ばします（HTTP 301 ではなく、meta refresh と JavaScript）。QR や古いブックマークはそのままで使えます。
+
+修正を公開するときは、本体リポジトリの `github-pages` を最新化し、そこから修正ブランチを切って PR を出します。CSV 更新もこの本体リポジトリへ push します。
 
 ## フォルダ構成
 
@@ -172,7 +179,7 @@ https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https://groups.goo
 エクスプローラーで `index.html` をダブルクリックするか、次を実行:
 
 ```powershell
-Start-Process "C:\Users\kabuk\Documents\komuro-highland-jichikai-site\index.html"
+Start-Process "C:\Users\kabuk\Documents\work\kmr-hl\pr-homepage\index.html"
 ```
 
 ## 運用のポイント
