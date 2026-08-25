@@ -1,6 +1,6 @@
 # 小室ハイランド自治会 広報サイト
 
-小室ハイランド自治会の公式広報用 Web サイトです。静的 HTML で構成され、[GitHub Pages](https://jichikai-kmr-hl.github.io/pr-homepage/) で公開します。
+小室ハイランド自治会の公式広報用 Web サイトです。静的 HTML で構成され、[GitHub Pages](https://jichikai-kmr-hl.github.io/) で公開します。
 
 ローカルでは `index.html` をブラウザで開くと、完成イメージをそのまま確認できます。
 
@@ -8,8 +8,9 @@
 
 ## 公開 URL
 
-- サイト: https://jichikai-kmr-hl.github.io/pr-homepage/
-- リポジトリ: https://github.com/jichikai-kmr-hl/pr-homepage
+- サイト: https://jichikai-kmr-hl.github.io/
+- 旧アドレス `https://jichikai-kmr-hl.github.io/pr-homepage/` はルートへ転送します
+- リポジトリ: https://github.com/jichikai-kmr-hl/jichikai-kmr-hl.github.io
 
 ## フォルダ構成
 
