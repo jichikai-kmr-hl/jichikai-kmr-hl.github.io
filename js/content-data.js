@@ -11,6 +11,13 @@ window.SITE_CONTENT = {
       "badge": "NEW"
     },
     {
+      "date": "2026-08-31",
+      "title": "生活道路の法定速度が9月1日から30km/hに引き下げられます",
+      "body": "令和8年9月1日から、中央線などがない生活道路における自動車の法定速度が60km/hから30km/hに引き下げられます。道路標識で最高速度が指定されている場合はその速度が優先です。案内チラシのPDFを公開しています。",
+      "link": "https://drive.google.com/open?id=1mO1m5CWDxthWXvMOjpRUVzjB6JOmABIg&usp=drive_fs",
+      "badge": "NEW"
+    },
+    {
       "date": "2026-08-20",
       "title": "小室夏まつりパンフレットを配布しました",
       "body": "紙での配付は終了。PDFファイルのダウンロードが可能です。",
@@ -526,6 +533,13 @@ window.SITE_CONTENT = {
     }
   ],
   "handouts": [
+    {
+      "year": 2026,
+      "month": 8,
+      "title": "自動車法定速度の改正（生活道路30km/h）",
+      "url": "https://drive.google.com/open?id=1mO1m5CWDxthWXvMOjpRUVzjB6JOmABIg&usp=drive_fs",
+      "description": "令和8年9月1日から、生活道路の法定速度が60km/hから30km/hに引き下げられます。"
+    },
     {
       "year": 2026,
       "month": 8,
