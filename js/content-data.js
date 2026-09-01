@@ -649,22 +649,6 @@ window.SITE_CONTENT = {
     },
     {
       "year": 2026,
-      "month": 9,
-      "day": 18,
-      "title": "豆まめくらぶ会話会",
-      "start_time": "11:00",
-      "end_time": "14:00",
-      "location": "C棟集会所",
-      "map_url": "",
-      "link": "https://drive.google.com/open?id=10m_tQ9BoS8E9ry9zih1cRhmRaupt2T26&usp=drive_fs",
-      "link_label": "案内チラシ（PDF）",
-      "description": "ハイランドサポーターズ倶楽部（豆まめくらぶ）主催。参加費無料（お菓子・飲み物付き）。C棟にお住まいの方はお気軽にご参加ください。自治会は応援協力しています。",
-      "descriptionLines": [
-        "ハイランドサポーターズ倶楽部（豆まめくらぶ）主催。参加費無料（お菓子・飲み物付き）。C棟にお住まいの方はお気軽にご参加ください。自治会は応援協力しています。"
-      ]
-    },
-    {
-      "year": 2026,
       "month": 10,
       "day": 11,
       "title": "(小室地区連) 敬老祝賀会",
