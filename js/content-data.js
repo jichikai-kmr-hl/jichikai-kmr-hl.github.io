@@ -5,6 +5,13 @@ window.SITE_CONTENT = {
   "news": [
     {
       "date": "2026-09-01",
+      "title": "豆まめくらぶ会話会のご案内（9月18日）",
+      "body": "ハイランドサポーターズ倶楽部（豆まめくらぶ）主催の会話会です。9月18日（金）11時〜14時、C棟集会所。参加費無料（お菓子・飲み物付き）。C棟にお住まいの方はお気軽にご参加ください。同クラブは高齢者や支援が必要な方へゴミ出し・買い物などの生活サポートを行っています。自治会は応援協力しています。案内チラシのPDFを公開しています。",
+      "link": "https://drive.google.com/open?id=10m_tQ9BoS8E9ry9zih1cRhmRaupt2T26&usp=drive_fs",
+      "badge": "NEW"
+    },
+    {
+      "date": "2026-09-01",
       "title": "広報紙「タウンタウン」2026年9月号を発行しました",
       "body": "最新号を紙での配付、及びPDFファイルのダウンロードが可能です。",
       "link": "https://drive.google.com/open?id=1aCJ5308_uBKtUIKM1Vv5mEO-b8tX_wQb&usp=drive_fs",
@@ -533,6 +540,13 @@ window.SITE_CONTENT = {
     }
   ],
   "handouts": [
+    {
+      "year": 2026,
+      "month": 9,
+      "title": "豆まめくらぶ会話会",
+      "url": "https://drive.google.com/open?id=10m_tQ9BoS8E9ry9zih1cRhmRaupt2T26&usp=drive_fs",
+      "description": "9月18日（金）11時〜14時、C棟集会所。参加費無料。C棟にお住まいの方はお気軽にご参加ください。"
+    },
     {
       "year": 2026,
       "month": 8,
