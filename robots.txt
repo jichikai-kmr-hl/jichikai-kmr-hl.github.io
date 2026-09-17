@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /keisai.html
 
 Sitemap: https://jichikai-kmr-hl.github.io/sitemap.xml
