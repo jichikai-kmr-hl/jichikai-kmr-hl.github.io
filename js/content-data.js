@@ -4,6 +4,13 @@ window.SITE_CONTENT = {
   "generated": true,
   "news": [
     {
+      "date": "2026-10-01",
+      "title": "広報紙「タウンタウン」2026年10月号を発行しました",
+      "body": "最新号を紙での配付、及びPDFファイルのダウンロードが可能です。",
+      "link": "https://drive.google.com/open?id=1Y99JBDCNb6Hy_VahLxr6Eju_6chTkIzF&usp=drive_fs",
+      "badge": "NEW"
+    },
+    {
       "date": "2026-09-28",
       "title": "台風25号の被害相談は船橋市災害ボランティアセンターへ",
       "body": "台風25号の被害にあわれた方は、船橋市社会福祉協議会が設置する船橋市災害ボランティアセンターへご相談ください。土砂の撤去、水に浸かった家財の片付け、家の中や敷地内の清掃などを手伝ってもらえます。受付は平日9時〜17時。電話090-2425-7297／090-2425-7298、FAX 047-431-2678。案内チラシのPDFを公開しています。",
@@ -22,7 +29,7 @@ window.SITE_CONTENT = {
       "title": "広報紙「タウンタウン」2026年9月号を発行しました",
       "body": "最新号を紙での配付、及びPDFファイルのダウンロードが可能です。",
       "link": "https://drive.google.com/open?id=1aCJ5308_uBKtUIKM1Vv5mEO-b8tX_wQb&usp=drive_fs",
-      "badge": "NEW"
+      "badge": ""
     },
     {
       "date": "2026-08-31",
@@ -70,10 +77,26 @@ window.SITE_CONTENT = {
   "newsletters": [
     {
       "year": 2026,
+      "month": 10,
+      "title": "タウンタウン 2026年10月号",
+      "url": "https://drive.google.com/open?id=1Y99JBDCNb6Hy_VahLxr6Eju_6chTkIzF&usp=drive_fs",
+      "latest": true,
+      "description": "敬老祝賀会開催のお知らせ / 高齢者インフルエンザ予防接種のお知らせ / 身近に迫る「電話 de 詐欺」にご注意を / 困りごとは地域包括支援センターへ / 小室公民館でシルバーリハビリ体操 / １０月の身近なイベント",
+      "headlines": [
+        "敬老祝賀会開催のお知らせ",
+        "高齢者インフルエンザ予防接種のお知らせ",
+        "身近に迫る「電話 de 詐欺」にご注意を",
+        "困りごとは地域包括支援センターへ",
+        "小室公民館でシルバーリハビリ体操",
+        "１０月の身近なイベント"
+      ]
+    },
+    {
+      "year": 2026,
       "month": 9,
       "title": "タウンタウン 2026年9月号",
       "url": "https://drive.google.com/open?id=1aCJ5308_uBKtUIKM1Vv5mEO-b8tX_wQb&usp=drive_fs",
-      "latest": true,
+      "latest": false,
       "description": "敬老祝賀会開催のお知らせ / 階段委員の交代について / ベランダ等の蜂の巣にご注意ください / 令和 8 年 8 月千葉豪雨に学ぶ：団地で命を守る「新・防災基準」",
       "headlines": [
         "敬老祝賀会開催のお知らせ",
