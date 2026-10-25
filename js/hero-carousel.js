@@ -10,13 +10,25 @@
   var DEFAULT_INTERVAL_MS = 10000;
   var TRANSITION_MS = 650;
 
+  /** render.js の KMR_TOP_RECENT と同じ基準日。日付が無い画像は外さない。 */
+  function heroCutoffIso(data) {
+    var api = window.KMR_TOP_RECENT;
+    if (!api || typeof api.cutoffIso !== "function") return "";
+    return api.cutoffIso(data && data.settings) || "";
+  }
+
   function getSlides() {
     var data = window.SITE_CONTENT;
     if (!data || !data.hero || !data.hero.length) {
       console.error("SITE_CONTENT.hero がありません。data/hero.csv を編集後 python build_content.py を実行してください。");
       return [];
     }
-    return data.hero.map(function (h) {
+    var cutoff = heroCutoffIso(data);
+    var rows = data.hero.filter(function (h) {
+      if (!cutoff || !/^\d{4}-\d{2}-\d{2}$/.test(h.date || "")) return true;
+      return h.date >= cutoff;
+    });
+    return rows.map(function (h) {
       return {
         src: h.src || ("assets/hero-candidates/" + h.image),
         label: h.title || h.image || "",

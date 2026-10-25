@@ -42,7 +42,7 @@ python build_content.py
 | `link` | | 詳細リンク（空なら `news.html#日付`）。外部URL可 |
 | `badge` | | 例: `NEW`（トップの最新件に表示） |
 
-- トップには **新しい日付から最大5件**
+- トップには **新しい日付から最大5件**。基準日（ページを開いた日・日本時間）の **3ヶ月より前は出さない**（`settings.topRecentMonths`、既定 3）。お知らせ一覧には古いものも残る
 - 過去一覧は **年月別に自動グループ化**
 
 ### 例
@@ -67,7 +67,7 @@ date,title,body,link,badge
 | `description` | | **記事の見出し（概要）**。複数行可（下記参照） |
 
 - 年別に自動グループ化
-- `latest=1` の号はタイトル横に **最新号** ラベルが表示され、トップの「最新号」カードにもなります
+- `latest=1` の号はタイトル横に **最新号** ラベルが表示され、トップの「最新号」カードにもなります。発行月が古くても、最新号はトップに残します
 - `description` はアーカイブ一覧で見出しリストとして表示されます
 
 ### 概要（見出し）の複数行入力
@@ -110,7 +110,7 @@ Excel のセル内改行を使う場合のイメージ:
 | `description` | | 説明。**複数行可**（下記） |
 
 - 一覧ページは **年 → 月** の時系列（古い順）。時刻・場所・地図・参考リンク・説明を表示
-- トップには **当月を含む直近3ヶ月** の予定（過ぎた日は非表示）
+- トップには **当月を含む直近3ヶ月** の予定（過ぎた日は非表示）。加えて、基準日（日本時間）の3ヶ月より前は出さない。過ぎた行事でも3ヶ月以内なら一覧には残す（トップの「過ぎた日は非表示」は維持）
 - 日程変更時は CSV を直してビルドするだけで反映
 
 ### 説明の複数行入力
@@ -138,19 +138,21 @@ year,month,day,title,start_time,end_time,location,map_url,link,link_label,descri
 | `image` | ○ | 画像ファイル名（`assets/hero-candidates/` 配下）。例: `01-park-multigen.jpg` |
 | `title` | ○ | 表示タイトル（キャプション・代替テキスト） |
 | `url` | | クリック時のリンク先。空ならリンクなし。外部URL可 |
+| `date` | | 行事などの日付 `YYYY-MM-DD`。入っていると、基準日（日本時間）の3ヶ月より前の画像はトップのカルーセルから外れる。空なら日付で判断できないので残す |
 
 - 並び順＝カルーセルの表示順
 - 自動再生間隔は `build_content.py` の `settings.heroIntervalMs`（既定 10000ms）
 - 画像はあらかじめ `assets/hero-candidates/` に置いてから CSV に書いてください
+- `date` は行事予定の開始日に合わせる（複数日は開始日）
 
 ### 例
 
 ```csv
-image,title,url
-00-current-hero-05tone.jpg,団地と公園の日常,
-01-park-multigen.jpg,公園と多世代のくらし,newsletters.html
-03-school-morning.jpg,団地と文教の朝,https://example.com/
-05-morning-sky.jpg,朝の青空のもとで,handouts.html
+image,title,url,date
+00-current-hero-05tone.jpg,団地と公園の日常,,
+01-park-multigen.jpg,公園と多世代のくらし,newsletters.html,2026-08-22
+03-school-morning.jpg,団地と文教の朝,https://example.com/,
+05-morning-sky.jpg,朝の青空のもとで,handouts.html,
 ```
 
 ---
@@ -167,7 +169,7 @@ image,title,url
 
 - **年月別に自動グループ化**（年 → 月）
 - 同じ年月に複数件あっても問題ありません
-- トップには新しいものから最大3件を表示
+- トップには、基準日（日本時間）の3ヶ月以内のうち新しいものから最大3件。日のない月は、その月の末日が3ヶ月前以降なら残す。一覧には古いものも残る
 
 ### 例
 
