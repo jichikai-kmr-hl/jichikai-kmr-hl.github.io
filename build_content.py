@@ -221,9 +221,13 @@ def parse_hero(rows: list[dict[str, str]]) -> list[dict]:
         image = (r.get("image") or "").strip()
         title = (r.get("title") or "").strip()
         url = (r.get("url") or "").strip()
+        date = (r.get("date") or "").strip()
         if not image:
             print(f"警告: image が空です: {r} — スキップ")
             continue
+        if date and not re.match(r"^\d{4}-\d{2}-\d{2}$", date):
+            print(f"警告: 日付形式が不正です（YYYY-MM-DD）: {date!r} — 日付なしとして扱う")
+            date = ""
         # ファイル名のみの場合は hero-candidates 配下とみなす
         if "/" not in image and "\\" not in image:
             src = f"assets/hero-candidates/{image}"
@@ -239,6 +243,7 @@ def parse_hero(rows: list[dict[str, str]]) -> list[dict]:
                 "src": src,
                 "title": title or image,
                 "url": url,
+                "date": date,
             }
         )
     return items
@@ -261,6 +266,8 @@ def main() -> None:
         "settings": {
             "topNewsCount": 5,
             "topEventsMonths": 3,
+            # トップから外す境界。閲覧日（日本時間）のこの月数より前。一覧ページには影響しない。
+            "topRecentMonths": 3,
             "heroIntervalMs": 10000,
         },
     }

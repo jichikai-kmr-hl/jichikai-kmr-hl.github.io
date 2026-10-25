@@ -23,6 +23,69 @@
     return esc(iso);
   }
 
+  function pad2(n) {
+    n = Number(n);
+    return (n < 10 ? "0" : "") + n;
+  }
+
+  /** 日本時間の今日（YYYY-MM-DD）。トップの基準日は、ページを開いた日。 */
+  function todayIsoTokyo() {
+    try {
+      var fmt = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Tokyo",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      });
+      var parts = fmt.formatToParts(new Date());
+      var y = "";
+      var m = "";
+      var d = "";
+      parts.forEach(function (p) {
+        if (p.type === "year") y = p.value;
+        if (p.type === "month") m = p.value;
+        if (p.type === "day") d = p.value;
+      });
+      if (/^\d{4}$/.test(y) && /^\d{2}$/.test(m) && /^\d{2}$/.test(d)) {
+        return y + "-" + m + "-" + d;
+      }
+    } catch (e) {
+      /* タイムゾーン未対応のときは端末のローカル日付 */
+    }
+    var now = new Date();
+    return now.getFullYear() + "-" + pad2(now.getMonth() + 1) + "-" + pad2(now.getDate());
+  }
+
+  /** YYYY-MM-DD を delta ヶ月ずらす。その月に無い日は月末に寄せる。 */
+  function shiftMonthsIso(iso, delta) {
+    var y = parseInt(iso.slice(0, 4), 10);
+    var m = parseInt(iso.slice(5, 7), 10);
+    var day = parseInt(iso.slice(8, 10), 10);
+    var first = new Date(Date.UTC(y, m - 1 + delta, 1));
+    var lastDay = new Date(
+      Date.UTC(first.getUTCFullYear(), first.getUTCMonth() + 1, 0)
+    ).getUTCDate();
+    var clamped = Math.min(day, lastDay);
+    var dt = new Date(Date.UTC(first.getUTCFullYear(), first.getUTCMonth(), clamped));
+    return dt.getUTCFullYear() + "-" + pad2(dt.getUTCMonth() + 1) + "-" + pad2(dt.getUTCDate());
+  }
+
+  function monthEndIso(year, month) {
+    var last = new Date(Date.UTC(year, month, 0)).getUTCDate();
+    return year + "-" + pad2(month) + "-" + pad2(last);
+  }
+
+  /** この日より前はトップに出さない（「3ヶ月より前」）。一覧ページでは使わない。 */
+  function recentCutoffIso(settings) {
+    var months = settings && settings.topRecentMonths;
+    if (typeof months !== "number" || !(months > 0)) months = 3;
+    return shiftMonthsIso(todayIsoTokyo(), -months);
+  }
+
+  function isFullIso(iso) {
+    return /^\d{4}-\d{2}-\d{2}$/.test(iso || "");
+  }
+
   function monthLabel(m) {
     return m + "月";
   }
@@ -140,10 +203,19 @@
     );
   }
 
-  function renderTopNews(el, news, count) {
-    var list = news.slice(0, count);
+  function renderTopNews(el, news, count, cutoffIso) {
+    var list = news
+      .filter(function (item) {
+        // 日付で古いか判断できないものは残す
+        if (!isFullIso(item.date)) return true;
+        return !cutoffIso || item.date >= cutoffIso;
+      })
+      .slice(0, count);
     if (!list.length) {
-      el.innerHTML = "<li><p class=\"news-summary\">お知らせはまだありません。</p></li>";
+      var emptyMsg = news.length
+        ? "直近3ヶ月のお知らせはありません。"
+        : "お知らせはまだありません。";
+      el.innerHTML = '<li><p class="news-summary">' + emptyMsg + "</p></li>";
       return;
     }
     el.innerHTML = list.map(function (item) {
@@ -418,12 +490,22 @@
     );
   }
 
-  /** 当月を含む直近 N ヶ月（過去の日付は除く） */
-  function isInNearMonths(item, now, months) {
+  /**
+   * トップの行事。基準日は日本時間の todayIso。
+   * - 基準日の3ヶ月より前は出さない（日が無い月は、月末が基準より前のときだけ外す）
+   * - 当月を含む向こう N ヶ月。過ぎた日は出さない（従来どおり）
+   * 過ぎていても3ヶ月以内の行事は「古い」としては外さない。一覧には従来どおり残る。
+   */
+  function isInNearMonths(item, todayIso, months, cutoffIso) {
     months = months || 3;
-    var y = now.getFullYear();
-    var m = now.getMonth() + 1;
-    var d = now.getDate();
+    var eventIso =
+      item.day != null && item.day !== ""
+        ? item.year + "-" + pad2(item.month) + "-" + pad2(item.day)
+        : monthEndIso(item.year, item.month);
+    if (cutoffIso && eventIso < cutoffIso) return false;
+    var y = parseInt(todayIso.slice(0, 4), 10);
+    var m = parseInt(todayIso.slice(5, 7), 10);
+    var d = parseInt(todayIso.slice(8, 10), 10);
     var nowIdx = y * 12 + m;
     var itemIdx = item.year * 12 + item.month;
     if (itemIdx < nowIdx || itemIdx >= nowIdx + months) return false;
@@ -435,15 +517,15 @@
     return true;
   }
 
-  function renderTopEvents(el, events, months) {
+  function renderTopEvents(el, events, months, cutoffIso) {
     if (!events.length) {
       el.innerHTML =
         '<p class="card-desc">行事予定はまだ登録されていません。</p>';
       return;
     }
-    var now = new Date();
+    var todayIso = todayIsoTokyo();
     var list = events.filter(function (e) {
-      return isInNearMonths(e, now, months);
+      return isInNearMonths(e, todayIso, months, cutoffIso);
     });
     if (!list.length) {
       el.innerHTML =
@@ -509,13 +591,23 @@
     el.innerHTML = html;
   }
 
-  function renderTopHandouts(el, handouts) {
-    if (!handouts.length) {
+  function renderTopHandouts(el, handouts, cutoffIso) {
+    // 日が無い月は、月末が基準日の3ヶ月前以降なら残す（月の途中では古いか断定しない）
+    var recentSource = handouts.filter(function (h) {
+      if (!cutoffIso || !h.year || !h.month) return true;
+      return monthEndIso(h.year, h.month) >= cutoffIso;
+    });
+    if (!recentSource.length) {
+      var emptyMsg = handouts.length
+        ? "直近3ヶ月の配布物はありません。"
+        : "各種配布物はまだ登録されていません。";
       el.innerHTML =
-        '<article class="card"><p class="card-desc">各種配布物はまだ登録されていません。</p></article>';
+        '<article class="card"><p class="card-desc">' +
+        emptyMsg +
+        '</p><p style="margin-top:1rem;margin-bottom:0"><a class="more-link" href="handouts.html">年月別の一覧を見る →</a></p></article>';
       return;
     }
-    var recent = handouts.slice(0, 3);
+    var recent = recentSource.slice(0, 3);
     var listHtml = recent
       .map(function (h) {
         return (
@@ -616,13 +708,14 @@
     }
     var count = (data.settings && data.settings.topNewsCount) || 5;
     var eventsMonths = (data.settings && data.settings.topEventsMonths) || 3;
+    var cutoffIso = recentCutoffIso(data.settings);
     var news = data.news || [];
     var newsletters = data.newsletters || [];
     var handouts = data.handouts || [];
     var events = data.events || [];
 
     var topNews = document.querySelector('[data-content="top-news"]');
-    if (topNews) renderTopNews(topNews, news, count);
+    if (topNews) renderTopNews(topNews, news, count, cutoffIso);
 
     var archiveNews = document.querySelector('[data-content="archive-news"]');
     if (archiveNews) renderArchiveNews(archiveNews, news);
@@ -634,17 +727,22 @@
     if (archiveNl) renderArchiveNewsletters(archiveNl, newsletters);
 
     var topHandouts = document.querySelector('[data-content="top-handouts"]');
-    if (topHandouts) renderTopHandouts(topHandouts, handouts);
+    if (topHandouts) renderTopHandouts(topHandouts, handouts, cutoffIso);
 
     var archiveHandouts = document.querySelector('[data-content="archive-handouts"]');
     if (archiveHandouts) renderArchiveHandouts(archiveHandouts, handouts);
 
     var topEvents = document.querySelector('[data-content="top-events"]');
-    if (topEvents) renderTopEvents(topEvents, events, eventsMonths);
+    if (topEvents) renderTopEvents(topEvents, events, eventsMonths, cutoffIso);
 
     var archiveEvents = document.querySelector('[data-content="archive-events"]');
     if (archiveEvents) renderArchiveEvents(archiveEvents, events);
   }
+
+  // hero-carousel.js も同じ基準日を使う（index.html ではこのファイルが先）
+  window.KMR_TOP_RECENT = {
+    cutoffIso: recentCutoffIso,
+  };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);

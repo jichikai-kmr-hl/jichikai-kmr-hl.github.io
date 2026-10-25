@@ -611,43 +611,50 @@ window.SITE_CONTENT = {
       "image": "event-08-natsumatsuri.jpg",
       "src": "assets/hero-candidates/event-08-natsumatsuri.jpg",
       "title": "小室夏まつり",
-      "url": "events.html"
+      "url": "events.html",
+      "date": "2026-08-22"
     },
     {
       "image": "event-10-keiro.jpg",
       "src": "assets/hero-candidates/event-10-keiro.jpg",
       "title": "敬老祝賀会",
-      "url": "events.html"
+      "url": "events.html",
+      "date": "2026-10-11"
     },
     {
       "image": "event-10-bunkamatsuri.jpg",
       "src": "assets/hero-candidates/event-10-bunkamatsuri.jpg",
       "title": "小室文化まつり",
-      "url": "events.html"
+      "url": "events.html",
+      "date": "2026-10-31"
     },
     {
       "image": "event-11-fukushi.jpg",
       "src": "assets/hero-candidates/event-11-fukushi.jpg",
       "title": "豊富福祉まつり",
-      "url": "events.html"
+      "url": "events.html",
+      "date": "2026-11-08"
     },
     {
       "image": "event-11-kirei.jpg",
       "src": "assets/hero-candidates/event-11-kirei.jpg",
       "title": "船橋をきれいにする日",
-      "url": "events.html"
+      "url": "events.html",
+      "date": "2026-11-15"
     },
     {
       "image": "event-11-bosai.jpg",
       "src": "assets/hero-candidates/event-11-bosai.jpg",
       "title": "船橋総合防災訓練",
-      "url": "events.html"
+      "url": "events.html",
+      "date": "2026-11-29"
     },
     {
       "image": "event-03-komurofes.jpg",
       "src": "assets/hero-candidates/event-03-komurofes.jpg",
       "title": "小室フェス",
-      "url": "events.html"
+      "url": "events.html",
+      "date": "2027-03-28"
     }
   ],
   "events": [
@@ -785,6 +792,7 @@ window.SITE_CONTENT = {
   "settings": {
     "topNewsCount": 5,
     "topEventsMonths": 3,
+    "topRecentMonths": 3,
     "heroIntervalMs": 10000
   }
 };
