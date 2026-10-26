@@ -156,7 +156,7 @@
       // アーカイブ: リンクがあれば本文内、なければ静的表示
       var bodyInner =
         '<p class="news-title">' +
-        esc(item.title) +
+        title +
         "</p>" +
         (item.body
           ? '<p class="news-summary">' +

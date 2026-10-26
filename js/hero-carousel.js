@@ -1,7 +1,7 @@
 /**
  * キーイメージ・カルーセル
  * - data/hero.csv → build_content.py → SITE_CONTENT.hero
- * - 自動再生・左から右へスライド
+ * - 自動再生・次へは右から左へスライド
  * - url がある画像はクリックでリンク先を開く
  */
 (function () {
@@ -128,7 +128,8 @@
       btn.setAttribute("aria-selected", i === 0 ? "true" : "false");
       btn.addEventListener("click", function () {
         if (i === index) return;
-        goTo(i, 1);
+        // 並びの後ろへは次へと同じ向き。前へは逆。端の折り返しは next / prev が向きを持つ
+        goTo(i, i > index ? 1 : -1);
         restartAutoplay();
       });
       dotsEl.appendChild(btn);
@@ -154,7 +155,7 @@
 
     /**
      * @param {number} newIndex
-     * @param {number} dir 1 = 次（左から入って右へ） / -1 = 前
+     * @param {number} dir 1 = 次（右から入って左へ） / -1 = 前（左から入って右へ）
      */
     function goTo(newIndex, dir) {
       newIndex = (newIndex + SLIDES.length) % SLIDES.length;
@@ -174,8 +175,8 @@
       var currentEl = slideEls[index];
       var nextEl = slideEls[newIndex];
 
-      var nextFrom = dir > 0 ? "-100%" : "100%";
-      var currentTo = dir > 0 ? "100%" : "-100%";
+      var nextFrom = dir > 0 ? "100%" : "-100%";
+      var currentTo = dir > 0 ? "-100%" : "100%";
 
       nextEl.style.transition = "none";
       nextEl.style.transform = "translateX(" + nextFrom + ")";
