@@ -4,11 +4,18 @@ window.SITE_CONTENT = {
   "generated": true,
   "news": [
     {
+      "date": "2026-10-28",
+      "title": "船橋市総合防災訓練が11月29日（日）に行われます",
+      "body": "令和8年度の船橋市総合防災訓練が、11月29日（日）9時〜12時に行われます。9時に防災行政無線のサイレンが鳴ったら、自宅などその場で1分ほど、姿勢を低く、頭を守り、動かない安全行動をしてください。9時30分から各会場で、避難所開設・運営、資機材の取り扱い、初期消火の訓練があります。小室小学校は代替教室（視聴覚室・3階）で行う予定ですが、変更の可能性があるため、当日は市職員の案内に従ってください。9時前の来場はご遠慮ください。室内履きをお持ちください。荒天・災害等で中止になることがあります。案内ポスターのPDFを公開しています。",
+      "link": "https://drive.google.com/open?id=12yZJK289DrBiozTBwFoCL5dGEIhNwQS2&usp=drive_fs",
+      "badge": "NEW"
+    },
+    {
       "date": "2026-10-01",
       "title": "広報紙「タウンタウン」2026年10月号を発行しました",
       "body": "最新号を紙での配付、及びPDFファイルのダウンロードが可能です。",
       "link": "https://drive.google.com/open?id=1Y99JBDCNb6Hy_VahLxr6Eju_6chTkIzF&usp=drive_fs",
-      "badge": "NEW"
+      "badge": ""
     },
     {
       "date": "2026-09-28",
@@ -570,6 +577,13 @@ window.SITE_CONTENT = {
     }
   ],
   "handouts": [
+    {
+      "year": 2026,
+      "month": 10,
+      "title": "船橋市総合防災訓練ポスター",
+      "url": "https://drive.google.com/open?id=12yZJK289DrBiozTBwFoCL5dGEIhNwQS2&usp=drive_fs",
+      "description": "11月29日（日）9時〜12時。9時にサイレンが鳴ったらその場で1分間の安全行動、9時30分から各会場で訓練です。"
+    },
     {
       "year": 2026,
       "month": 9,
