@@ -1918,6 +1918,116 @@ a:hover {
   }
 }
 
+/*
+ * 幅400px以下（らくらくフォン等）だけ左右の余白を詰める。
+ * ページ外側・カード・お知らせの内側枠が重なり、本文が1行10字前後まで
+ * 細くなるため。文字サイズ・行間・ボタンの余白は変えない。
+ * 401px以上（タブレット・PC）は従来の余白のまま。
+ */
+@media (max-width: 400px) {
+  .header-inner,
+  .main,
+  .site-footer {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .nav {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .section {
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+  }
+
+  .news-list[data-content="top-news"],
+  .events-panel {
+    padding-left: 0.35rem;
+    padding-right: 0.35rem;
+  }
+
+  .news-item,
+  .event-item {
+    padding-left: 0.15rem;
+    padding-right: 0.15rem;
+  }
+
+  .news-date {
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+
+  .event-date {
+    padding-left: 0.35rem;
+    padding-right: 0.35rem;
+  }
+
+  .badge-new {
+    padding-left: 0.35rem;
+    padding-right: 0.35rem;
+    margin-right: 0.25rem;
+  }
+
+  .card {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .hero-body {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .hero-carousel-caption {
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+  }
+
+  .month-group {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+  }
+
+  .year-heading {
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+  }
+
+  .link-list a {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
+
+  .card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ml-box,
+  .guide-intro,
+  .guide-start-box,
+  .guide-step,
+  .key-point,
+  .addr-box,
+  .guide-quote,
+  .guide-highlight,
+  .note {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .guide-checklist {
+    padding-left: 1.45rem;
+    padding-right: 0.7rem;
+  }
+
+  .guide-faq-item {
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+  }
+}
+
 /* Print-friendly */
 @media print {
   .site-header {
