@@ -1,0 +1,66 @@
+/*
+ * 確認用（/preview/）だけの見た目。ルートの css/style.css のあとに読む。
+ */
+
+/* 確認用であることを示す帯（各ページの最上部） */
+.preview-banner {
+  background: #fff3b0;
+  border-bottom: 3px solid #d4843c;
+  color: #4a2c00;
+}
+
+.preview-banner p {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.55rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.preview-banner strong {
+  color: #a33a00;
+}
+
+.preview-banner span {
+  display: inline-block;
+}
+
+.preview-banner a {
+  display: inline-block;
+  margin-left: 0.5rem;
+  color: #00468c;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* トップの見出し: 24px → 20px。2つのまとまりの途中では折り返さない */
+.hero h1.preview-hero-title {
+  font-size: 1.25rem;
+  line-height: 1.45;
+}
+
+.preview-hero-title span {
+  display: inline-block;
+}
+
+/* メールが要らない方への一文 */
+.preview-no-mail-note {
+  margin: 0.75rem 0;
+  padding: 0.6rem 0.8rem;
+  background: var(--blue-soft);
+  border-left: 4px solid var(--blue-dark);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* トップのお知らせを見出しだけにしたとき、見出しの下の余白を詰める */
+.news-list[data-content="top-news"] .news-title {
+  margin-bottom: 0;
+}
+
+/* 見出しを言葉のまとまりごとに折り返す */
+.preview-nowrap {
+  display: inline-block;
+}
