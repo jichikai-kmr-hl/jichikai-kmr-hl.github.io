@@ -4,11 +4,18 @@ window.SITE_CONTENT = {
   "generated": true,
   "news": [
     {
+      "date": "2026-11-18",
+      "title": "児童相談所虐待対応ダイヤル「189」について",
+      "body": "こども家庭庁から、児童相談所虐待対応ダイヤル「189（いちはやく）」のポスターが届きました。「虐待かもしれない」と思ったときは、189にお電話ください。24時間365日つながり、名前を言わなくても、間違っていても構いません。通話料はかからず、秘密は守られます。ポスターのPDFを公開しています。",
+      "link": "https://drive.google.com/open?id=1WMgxihwtMeDhS2PewDaA2e3yU_hC-QPi&usp=drive_fs",
+      "badge": "NEW"
+    },
+    {
       "date": "2026-11-01",
       "title": "広報紙「タウンタウン」2026年11月号を発行しました",
       "body": "最新号を紙での配付、及びPDFファイルのダウンロードが可能です。",
       "link": "https://drive.google.com/open?id=1dIHFMlPb9K4lKgd__L4ZHqZTQ8RNe2Wa&usp=drive_fs",
-      "badge": "NEW"
+      "badge": ""
     },
     {
       "date": "2026-10-28",
@@ -602,6 +609,13 @@ window.SITE_CONTENT = {
     }
   ],
   "handouts": [
+    {
+      "year": 2026,
+      "month": 11,
+      "title": "児童相談所虐待対応ダイヤル「189」ポスター（こども家庭庁）",
+      "url": "https://drive.google.com/open?id=1WMgxihwtMeDhS2PewDaA2e3yU_hC-QPi&usp=drive_fs",
+      "description": "「虐待かも」と思ったら189へ。24時間365日、名前を言わなくても相談できます。"
+    },
     {
       "year": 2026,
       "month": 10,
